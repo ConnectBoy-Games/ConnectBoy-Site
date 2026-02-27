@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="logo.png">
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar">
@@ -17,6 +19,11 @@
                     <h1>ConnectBoy Games</h1>
                 </a>
             </div>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li><a href="#features">Features</a></li>
@@ -49,19 +56,23 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <h3>Multiplayer Gaming</h3>
-                    <p>Play with friends and gamers worldwide in real-time multiplayer experiences. Connect instantly and compete in thrilling matches.</p>
+                    <p>Play with friends and gamers worldwide in real-time multiplayer experiences. Connect instantly
+                        and compete in thrilling matches.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Cross-Platform</h3>
-                    <p>Seamlessly play across iOS and Android devices. Start on one device and continue on another without losing progress.</p>
+                    <p>Seamlessly play across iOS and Android devices. Start on one device and continue on another
+                        without losing progress.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Secure & Safe</h3>
-                    <p>Your data is protected with enterprise-grade encryption. We prioritize user privacy and security above all else.</p>
+                    <p>Your data is protected with enterprise-grade encryption. We prioritize user privacy and security
+                        above all else.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Regular Updates</h3>
-                    <p>Enjoy new games, features, and content updates regularly. We're constantly improving your gaming experience.</p>
+                    <p>Enjoy new games, features, and content updates regularly. We're constantly improving your gaming
+                        experience.</p>
                 </div>
                 <div class="feature-card">
                     <h3>Social Features</h3>
@@ -82,24 +93,24 @@
             <p class="section-subtitle">Explore our collection of engaging multiplayer games</p>
             <div class="games-grid">
                 <div class="game-card">
-                    <div class="game-icon">❌</div>
-                    <h3>X And O</h3>
-                    <p>The timeless duel. Claim the grid by outmaneuvering friends in the definitive X vs O showdown.</p>
+                    <div class="game-icon">🎮</div>
+                    <h3>Battle Arena</h3>
+                    <p>Fast-paced competitive matches with real-time strategy elements.</p>
+                </div>
+                <div class="game-card">
+                    <div class="game-icon">🏃</div>
+                    <h3>Racing Elite</h3>
+                    <p>Compete in thrilling multiplayer races on exotic tracks.</p>
                 </div>
                 <div class="game-card">
                     <div class="game-icon">🧩</div>
-                    <h3>Four In A Row</h3>
-                    <p>One perfect move decides it all. The definitive 4-in-a-row experience</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">🎯</div>
-                    <h3>Archery</h3>
-                    <p>Skill, precision, and a steady hand. Master the wind and hit the bullseye.</p>
+                    <h3>Puzzle Masters</h3>
+                    <p>Collaborative and competitive puzzle games for all skill levels.</p>
                 </div>
                 <div class="game-card">
                     <div class="game-icon">⚽</div>
-                    <h3>Mini Soccer</h3>
-                    <p>Simple controls, intense multiplayer. Score big in quick mini soccer matches.</p>
+                    <h3>Sports Connect</h3>
+                    <p>Experience realistic sports simulations with online multiplayer modes.</p>
                 </div>
             </div>
         </div>
@@ -109,8 +120,14 @@
     <section class="about">
         <div class="container">
             <h2>About Connect Boy</h2>
-            <p>Connect Boy is a leading mobile gaming platform dedicated to bringing players together through innovative, engaging multiplayer experiences. Founded with a passion for gaming and social connection, we develop high-quality games that prioritize user satisfaction, security, and fair play.</p>
-            <p>Our mission is to create a welcoming gaming community where players of all levels can enjoy competitive and casual gaming experiences.</p>
+            <div class="about-content">
+                <p>Connect Boy is a leading mobile gaming platform dedicated to bringing players together through
+                    innovative, engaging multiplayer experiences. Founded with a passion for gaming and social
+                    connection, we develop high-quality games that prioritize user satisfaction, security, and fair
+                    play.</p>
+                <p>Our mission is to create a welcoming gaming community where players of all levels can enjoy
+                    competitive and casual gaming experiences.</p>
+            </div>
         </div>
     </section>
 
@@ -121,10 +138,10 @@
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> support@connectboy.com</p>
-                    <p><strong>Phone:</strong> +1 (555) 123-4567</p>
-                    <p><strong>Address:</strong> 123 Gaming Street, Tech City, TC 12345</p>
-                    <p><strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM (EST)</p>
+                    <p><strong>Email:</strong> connectboygames@gmail.com</p>
+                    <p><strong>Phone:</strong>⁠+2349067515176</p>
+                    <p><strong>Address:</strong> Address: Garki, Abuja, Nigeria</p>
+                    <p><strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM (WAT)</p>
                 </div>
                 <div class="contact-form">
                     <h3>Send us a Message</h3>
@@ -176,5 +193,22 @@
             </div>
         </div>
     </footer>
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
+
 </html>
