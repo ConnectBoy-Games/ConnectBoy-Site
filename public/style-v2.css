@@ -7,8 +7,8 @@
     --text-primary: #0a0a0a;
     --text-secondary: #4a4a4a;
     --text-muted: #8a8a8a;
-    --accent: #000000;
-    --accent-hover: #333333;
+    --accent: #F79878;
+    --accent-hover: #e88665;
     --border: #eeeeee;
     --card-bg: #ffffff;
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -146,12 +146,19 @@ body {
     color: var(--text-primary);
 }
 
+.text-accent {
+    color: var(--accent);
+}
+
 /* Hero Section */
 .hero {
-    padding: 8rem 0 6rem;
-    background-color: var(--bg-secondary);
+    padding: 10rem 0 8rem;
+    background: radial-gradient(circle at 10% 20%, rgba(247, 152, 120, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(247, 152, 120, 0.08) 0%, transparent 40%);
+    background-color: var(--bg-primary);
     text-align: center;
     overflow: hidden;
+    position: relative;
 }
 
 .hero-content h1 {
@@ -220,7 +227,8 @@ body {
 
 .btn-secondary:hover {
     background-color: var(--bg-secondary);
-    border-color: var(--text-primary);
+    border-color: var(--accent);
+    color: var(--accent);
     transform: translateY(-4px);
 }
 
@@ -232,9 +240,23 @@ section {
 section h2 {
     font-size: 2.8rem;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-weight: 700;
     letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
 }
 
 .section-subtitle {
@@ -269,8 +291,8 @@ section h2 {
 .feature-card:hover {
     transform: translateY(-8px);
     background: white;
-    border-color: var(--text-primary);
-    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(247, 152, 120, 0.15);
 }
 
 .feature-card h3 {
@@ -306,8 +328,8 @@ section h2 {
 
 .game-card:hover {
     transform: translateY(-8px);
-    border-color: var(--text-primary);
-    box-shadow: var(--shadow-md);
+    border-color: var(--accent);
+    box-shadow: 0 15px 35px rgba(247, 152, 120, 0.15);
 }
 
 .game-icon {
@@ -405,8 +427,8 @@ section h2 {
 .contact-form textarea:focus {
     outline: none;
     background: white;
-    border-color: var(--text-primary);
-    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(247, 152, 120, 0.1);
 }
 
 /* Legal Pages */
@@ -418,14 +440,28 @@ section h2 {
 
 .legal-container h1 {
     font-size: 3.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     font-weight: 800;
     letter-spacing: -0.04em;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.legal-container h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 2px;
 }
 
 .last-updated {
     color: var(--text-muted);
     font-size: 1rem;
+    margin-top: 2rem;
     margin-bottom: 4rem;
     font-weight: 500;
 }
@@ -465,7 +501,7 @@ section h2 {
 .footer {
     background: var(--bg-primary);
     padding: 5rem 0 3rem;
-    border-top: 1px solid var(--border);
+    border-top: 2px solid var(--accent);
 }
 
 .footer-content {
