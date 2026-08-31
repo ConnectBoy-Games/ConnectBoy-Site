@@ -1,224 +1,662 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Boy - Mobile Apps & Games</title>
-    <link rel="stylesheet" href="style-v2.css">
-    <link rel="icon" type="image/png" href="logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConnectBoy Games — Create. Connect. Play.</title>
+<meta name="description" content="ConnectBoy is an independent mobile games studio. Chess Wager and ConnectBoy Games — real-time multiplayer, free to play on iOS and Android.">
+<link rel="icon" href="logo.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/anton@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/800.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/600.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --ink:#0B0C0F; --ink2:#0E1016; --paper:#F3EFE4; --dim:rgba(243,239,228,.62);
+  --line:rgba(243,239,228,.16);
+  --gold:#3B82F6; --gold-deep:#1D4ED8;
+  --felt:#0D1712; --petrol:#0C141D;
+  --coral:#FF5147; --mint:#4FE0A6; --sun:#FFD23F; --sky:#5EC6FF; --bubble:#FF7BC1; --grass:#8BE563;
+  --disp:'Anton',Impact,sans-serif; --body:'Archivo',Helvetica,sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.6;overflow-x:hidden}
+body.no-scroll{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--gold);color:#151208}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#151208;padding:10px 18px;z-index:200;font-family:var(--mono)}
+.skip:focus{left:12px;top:12px}
+
+/* ---------- texture ---------- */
+.noise{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+.checkers{--cA:var(--paper);--cB:transparent;--cs:12px;height:var(--cs);
+ background:conic-gradient(var(--cA) 0 25%,var(--cB) 0 50%);background-size:calc(var(--cs)*2) calc(var(--cs)*2)}
+
+/* ---------- type helpers ---------- */
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:36px;height:2px;background:currentColor;flex:none}
+.title-xl{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing:.01em;font-size:clamp(2.9rem,7.4vw,6.6rem);margin:22px 0 0}
+.outline{color:transparent;-webkit-text-stroke:2px var(--paper)}
+.lead{color:var(--dim);font-size:clamp(1rem,1.4vw,1.2rem);max-width:52ch}
+.sec-sub{color:var(--dim);max-width:56ch;margin-top:18px}
+.mono-tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;font-family:var(--disp);font-size:1.02rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer;padding:16px 26px;border:2px solid transparent;transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease}
+.btn svg{flex:none}
+.btn-gold{background:var(--gold);color:#151208;border-color:var(--gold);box-shadow:8px 8px 0 rgba(0,0,0,.45)}
+.btn-gold:hover{transform:translate(3px,3px);box-shadow:4px 4px 0 rgba(0,0,0,.45)}
+.btn.ghost{background:transparent;color:var(--paper);border-color:rgba(243,239,228,.45)}
+.btn.ghost:hover{background:rgba(243,239,228,.1);border-color:var(--paper)}
+.btn-note{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim)}
+
+/* ---------- nav ---------- */
+#nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px clamp(20px,4vw,48px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+#nav.scrolled{background:rgba(11,12,15,.94);border-bottom-color:var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-img{height:40px;width:auto;display:block}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-family:var(--disp);font-size:14px;font-weight:400;letter-spacing:.08em;text-decoration:none;color:var(--dim);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:.8rem;padding:8px 14px;box-shadow:5px 5px 0 rgba(0,0,0,.5)}
+.burger{display:none;background:none;border:0;width:40px;height:34px;cursor:pointer;position:relative;z-index:70}
+.burger span{position:absolute;left:7px;right:7px;height:2px;background:var(--paper);transition:transform .3s,top .3s}
+.burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:20px}
+.burger.x span:nth-child(1){top:16px;transform:rotate(45deg)}
+.burger.x span:nth-child(2){top:16px;transform:rotate(-45deg)}
+#menu{position:fixed;inset:0;z-index:50;background:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:100px clamp(24px,8vw,80px) 50px;gap:6px;opacity:0;pointer-events:none;transition:opacity .35s}
+#menu.open{opacity:1;pointer-events:auto}
+#menu a.mlink{font-family:var(--disp);font-size:clamp(2.2rem,8vw,3.6rem);text-transform:uppercase;text-decoration:none;line-height:1.16;color:var(--paper)}
+#menu a.mlink:hover{color:var(--gold)}
+#menu .menu-foot{margin-top:auto;display:flex;gap:22px;flex-wrap:wrap}
+#menu .menu-foot a{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-decoration:none}
+
+/* ---------- hero ---------- */
+#hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;isolation:isolate}
+.hbg{position:absolute;inset:-10%;z-index:0;background-size:cover;background-position:center;filter:blur(3px) brightness(.4) saturate(.85)}
+.hbg.a{background-image:url("images/ConnectBoy Games/AllGames.jpg")}
+.hbg.b{background-image:url("images/ConnectBoy Games/MiniSoccer.jpg");opacity:.45}
+.scrim{position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 32% 42%,rgba(11,12,15,.3),rgba(11,12,15,.84) 72%),linear-gradient(180deg,rgba(11,12,15,.65),rgba(11,12,15,.18) 40%,rgba(11,12,15,.94) 97%)}
+.shot{position:absolute;will-change:transform;z-index:2}
+.shot .tilt{transform:rotate(var(--r));animation:float var(--dur) ease-in-out infinite alternate}
+@keyframes float{from{transform:rotate(var(--r)) translateY(0)}to{transform:rotate(var(--r)) translateY(-16px)}}
+.frame{border-radius:26px;padding:7px;background:linear-gradient(180deg,#1E2126,#111318);box-shadow:0 30px 60px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.07)}
+.frame img{width:100%;border-radius:19px;aspect-ratio:1/2;object-fit:cover}
+.s1{left:4%;top:15%;width:195px}
+.s2{left:5%;top:62%;width:175px}
+.s3{right:31%;top:-7%;width:165px}
+.s3 .frame img{filter:saturate(.85) brightness(.8)}
+.s4{right:15%;top:20%;width:205px}
+.s5{right:-2%;bottom:-13%;width:235px}
+.hero-inner{position:relative;z-index:3;padding:130px clamp(20px,5vw,64px) 120px;max-width:1500px;width:100%;margin:0 auto}
+.hero-inner h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.9;font-size:clamp(3.4rem,10.5vw,8.8rem);margin:26px 0 0}
+.hero-sub{margin-top:26px;color:var(--dim);max-width:46ch;font-size:clamp(1rem,1.4vw,1.18rem)}
+.hero-cta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:38px}
+.hero-meta{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;justify-content:space-between;gap:20px;padding:16px clamp(20px,5vw,64px);border-top:1px solid var(--line);font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:rgba(243,239,228,.55)}
+.cue{display:inline-block;width:1px;height:30px;background:var(--paper);vertical-align:middle;margin-left:10px;animation:cue 1.9s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.25);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+
+/* ---------- ticker ---------- */
+.ticker{overflow:hidden;background:var(--paper);color:var(--ink);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.ticker-track{display:flex;width:max-content;animation:tick 30s linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.tk{display:flex;align-items:center;font-family:var(--disp);font-size:1.35rem;letter-spacing:.05em;padding:12px 0;text-transform:uppercase;white-space:nowrap}
+.tk i{font-style:normal;margin:0 22px;color:var(--coral)}
+.ticker.coral{background:var(--coral);color:#170B0A;border-color:#170B0A}
+.ticker.coral .tk i{color:#170B0A}
+.ticker.coral .ticker-track{animation-direction:reverse}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+/* ---------- sections shell ---------- */
+.sec{padding:clamp(90px,11vw,150px) clamp(20px,5vw,64px);position:relative}
+.sec-inner{max-width:1500px;margin:0 auto}
+
+/* ---------- lineup ---------- */
+#lineup{background:var(--ink)}
+.row{display:grid;grid-template-columns:70px 1fr 52px;grid-template-rows:auto auto;align-items:center;gap:4px 26px;padding:34px 10px;border-top:2px solid var(--line);text-decoration:none;color:var(--paper);position:relative;transition:background .3s,color .3s,padding .3s}
+.row:last-of-type{border-bottom:2px solid var(--line)}
+.row .idx{grid-column:1;grid-row:1/3;font-family:var(--mono);font-size:13px;letter-spacing:.14em;color:var(--dim)}
+.row .rname{grid-column:2;grid-row:1;font-family:var(--disp);font-size:clamp(1.9rem,5vw,4rem);line-height:1;text-transform:uppercase}
+.row .rtag{grid-column:2;grid-row:2;font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--dim)}
+.row .go{grid-column:3;grid-row:1/3;justify-self:end;transition:transform .3s}
+.row .peek{position:absolute;right:11%;top:50%;width:128px;border-radius:16px;border:4px solid var(--paper);box-shadow:14px 14px 0 rgba(0,0,0,.45);opacity:0;transform:translateY(-50%) rotate(9deg) scale(.85);transition:opacity .3s,transform .3s;pointer-events:none;aspect-ratio:1/2;object-fit:cover;z-index:2}
+.row:hover{background:var(--paper);color:var(--ink);padding-left:28px}
+.row:hover .idx,.row:hover .rtag{color:var(--ink);opacity:.55}
+.row:hover .peek{opacity:1;transform:translateY(-50%) rotate(4deg) scale(1)}
+.row:hover .go{transform:translateX(8px)}
+@media (hover:none){.row .peek{display:none}}
+
+/* ---------- chess wager ---------- */
+#chess-wager{background:var(--felt);overflow:hidden}
+#chess-wager::before{content:"";position:absolute;inset:0;background:conic-gradient(rgba(226,168,61,.05) 0 25%,transparent 0 50%);background-size:120px 120px;pointer-events:none}
+.cw-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(40px,6vw,90px);align-items:center;position:relative}
+#chess-wager .kicker{color:var(--gold)}
+.cw-title .o-gold{color:var(--gold)}
+.meta-list{list-style:none;margin-top:36px}
+.meta-list li{border-top:1px solid rgba(243,239,228,.18);padding:15px 0;display:grid;grid-template-columns:190px 1fr;gap:16px;align-items:baseline}
+.meta-list li span{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;color:var(--gold)}
+.meta-list li em{font-style:normal;color:var(--dim)}
+.cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:38px}
+.cw-comp{position:relative;min-height:560px}
+.cw-comp .frame{position:absolute}
+.cw-comp .fb{width:56%;left:0;top:7%;transform:rotate(-6deg);z-index:1;opacity:.92}
+.cw-gold{position:absolute;width:64%;right:-3%;top:7%;aspect-ratio:1/2;border:2px solid var(--gold);transform:rotate(3deg);z-index:2}
+.cw-comp .fm{width:64%;right:0;top:0;transform:rotate(3deg);z-index:3}
+.sticker{position:absolute;left:-4%;bottom:6%;z-index:4;background:var(--gold);color:#151208;font-family:var(--disp);font-size:1.15rem;letter-spacing:.05em;padding:12px 18px;transform:rotate(-8deg);box-shadow:8px 8px 0 rgba(0,0,0,.4)}
+
+/* ---------- connectboy ---------- */
+#connectboy{background:radial-gradient(60% 50% at 72% 12%,rgba(255,81,71,.09),transparent),var(--petrol)}
+#connectboy .kicker{color:var(--coral)}
+.cb-show{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,470px);gap:clamp(34px,5vw,80px);align-items:center;margin-top:clamp(44px,6vw,80px)}
+.cb-list{display:flex;flex-direction:column;gap:10px}
+.sel-btn{display:grid;grid-template-columns:48px 1fr;grid-template-rows:auto auto;column-gap:18px;align-items:center;text-align:left;padding:16px 18px;background:transparent;border:1px solid var(--line);color:var(--paper);cursor:pointer;font-family:var(--body);transition:background .25s,color .25s,border-color .25s,transform .25s}
+.sel-btn .sn{grid-column:1;grid-row:1/3;font-family:var(--disp);font-size:1.5rem;color:rgba(243,239,228,.35)}
+.sel-btn .sname{grid-column:2;grid-row:1;font-family:var(--disp);font-size:1.25rem;letter-spacing:.04em;text-transform:uppercase}
+.sel-btn .sblurb{grid-column:2;grid-row:2;font-size:.85rem;color:var(--dim)}
+.sel-btn:hover{border-color:rgba(243,239,228,.5)}
+.sel-btn.active{background:var(--g,var(--coral));border-color:var(--g,var(--coral));color:#101014;transform:translateX(10px)}
+.sel-btn.active .sn{color:rgba(16,16,20,.5)}
+.sel-btn.active .sblurb{color:rgba(16,16,20,.75)}
+.cb-stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:24px;padding:64px 0 8px}
+.cb-ghost{position:absolute;top:0;left:50%;transform:translateX(-50%);font-family:var(--disp);font-size:clamp(3rem,8vw,6.4rem);white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(243,239,228,.2);text-transform:uppercase;pointer-events:none}
+.cb-ghost.slide{animation:ghostIn .5s ease}
+@keyframes ghostIn{from{opacity:0;transform:translateX(-50%) translateY(16px)}to{opacity:1;transform:translateX(-50%)}}
+.cb-frame{width:min(320px,76vw);z-index:1}
+.cb-frame img.pop{animation:shotIn .55s cubic-bezier(.2,.7,.2,1)}
+@keyframes shotIn{from{opacity:0;transform:translateX(28px) scale(.97)}to{opacity:1;transform:none}}
+.cb-bar{width:min(320px,76vw);height:3px;background:rgba(243,239,228,.15);z-index:1}
+.cb-bar i{display:block;height:100%;width:0;background:var(--gcur,var(--coral));animation:grow 5.2s linear forwards}
+.cb-show.paused .cb-bar i{animation-play-state:paused}
+@keyframes grow{from{width:0}to{width:100%}}
+.chip{position:absolute;font-family:var(--mono);font-size:11px;letter-spacing:.18em;padding:9px 13px;border:1px solid rgba(243,239,228,.35);background:rgba(11,12,15,.6)}
+.chip-a{top:12%;left:2%;transform:rotate(-6deg);color:var(--sun)}
+.chip-b{bottom:10%;right:0;transform:rotate(5deg);color:var(--mint)}
+
+/* ---------- features ---------- */
+#features{background:var(--ink2)}
+.frow{display:grid;grid-template-columns:110px 1fr minmax(0,220px);gap:26px;align-items:center;padding:38px 12px;border-top:1px solid var(--line);transition:background .3s}
+.frow:last-of-type{border-bottom:1px solid var(--line)}
+.frow:nth-of-type(3n+1){--fa:var(--gold)}
+.frow:nth-of-type(3n+2){--fa:var(--coral)}
+.frow:nth-of-type(3n){--fa:var(--mint)}
+.frow:hover{background:rgba(243,239,228,.04)}
+.fid{font-family:var(--disp);font-size:2.4rem;color:transparent;-webkit-text-stroke:1.5px rgba(243,239,228,.4);transition:color .3s,-webkit-text-stroke .3s}
+.frow:hover .fid{color:var(--fa);-webkit-text-stroke:1.5px transparent}
+.frow h3{font-family:var(--disp);font-weight:400;font-size:clamp(1.5rem,3.4vw,2.5rem);text-transform:uppercase;line-height:1;margin-bottom:10px}
+.frow p{color:var(--dim);max-width:52ch}
+.fside{justify-self:end}
+.fside .tagchip{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;border:1px solid var(--fa,var(--line));color:var(--fa,var(--dim));padding:10px 14px}
+.fside img{width:112px;aspect-ratio:1/2;object-fit:cover;border-radius:12px;border:3px solid var(--paper);transform:rotate(5deg);box-shadow:9px 9px 0 rgba(0,0,0,.45)}
+
+/* ---------- studio ---------- */
+#studio{background:var(--paper);color:var(--ink)}
+#studio .kicker{color:var(--gold-deep)}
+.studio-quote{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:clamp(1.9rem,5vw,4.2rem);line-height:1.04;margin-top:24px;max-width:24ch}
+.studio-p{margin-top:30px;max-width:62ch;color:rgba(11,12,15,.72);font-size:1.05rem}
+.studio-meta{margin-top:44px;padding-top:20px;border-top:2px solid var(--ink);display:flex;gap:34px;flex-wrap:wrap;font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em}
+
+/* ---------- contact ---------- */
+#contact{background:var(--ink)}
+.ct-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(44px,6vw,100px)}
+.c-line{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line)}
+.c-line:last-of-type{border-bottom:1px solid var(--line)}
+.c-line .cl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.c-line .cv{font-weight:600;font-size:1.05rem}
+.c-line a.cv{font-family:var(--disp);font-weight:400;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:.03em;text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.c-line a.cv:hover{color:var(--gold);border-color:var(--gold)}
+.form-title{font-family:var(--disp);font-weight:400;font-size:1.6rem;text-transform:uppercase;letter-spacing:.03em;margin-bottom:26px}
+.field{margin-bottom:26px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim);margin-bottom:6px;text-transform:uppercase}
+.field input,.field textarea{width:100%;background:transparent;border:0;border-bottom:2px solid rgba(243,239,228,.25);color:var(--paper);font-family:var(--body);font-size:1rem;padding:12px 2px;transition:border-color .2s;border-radius:0}
+.field textarea{resize:vertical;min-height:110px}
+.field input:focus,.field textarea:focus{border-color:var(--gold);outline:none}
+#cform .btn{width:100%;justify-content:center}
+
+/* ---------- footer ---------- */
+footer{background:#060708}
+.foot-logo{font-family:var(--disp);font-size:clamp(2.6rem,12.5vw,11.5rem);line-height:.9;text-align:center;padding:70px 16px 8px;user-select:none;letter-spacing:.02em}
+.foot-logo img{height:clamp(3rem,12.5vw,11.5rem);width:auto;display:inline-block;filter:drop-shadow(0 0 1px rgba(243,239,228,.22))}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;padding:34px clamp(20px,5vw,64px) 44px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim)}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a,.foot-social a{color:var(--dim);text-decoration:none;transition:color .2s}
+.foot-links a:hover,.foot-social a:hover{color:var(--gold)}
+.foot-social{display:flex;gap:22px}
+.foot-check{--cA:var(--gold)}
+
+/* ---------- reveal ---------- */
+.js .rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1080px){
+  .cw-grid,.cb-show,.ct-grid{grid-template-columns:1fr}
+  .cw-comp{min-height:0;height:520px;max-width:520px;margin-top:20px}
+  .cb-stage{padding-top:70px}
+  .frow{grid-template-columns:70px 1fr;grid-template-rows:auto auto}
+  .frow .fid{grid-row:1/3}
+  .fside{grid-column:2;justify-self:start;margin-top:6px}
+}
+@media (max-width:900px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:block}
+  .s2,.s3,.s4{display:none}
+  .s1{left:-6%;top:9%;width:150px;opacity:.55}
+  .s5{right:-8%;bottom:2%;width:170px;opacity:.6}
+  .hero-meta span:nth-child(2){display:none}
+}
+@media (max-width:640px){
+  .meta-list li{grid-template-columns:1fr;gap:4px}
+  .cw-comp{height:440px}
+  .cw-comp .fb{width:62%}
+  .cw-comp .fm,.cw-gold{width:70%}
+  .frow{grid-template-columns:1fr;gap:12px}
+  .frow .fid{grid-row:auto}
+  .c-line{grid-template-columns:1fr;gap:4px}
+  .row{grid-template-columns:44px 1fr 34px}
+  .hero-meta{justify-content:center}
+  .hero-meta span:nth-child(4){display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html">
-                    <img src="logo.png" alt="Connect Boy" class="logo-img">
-                    <h1>ConnectBoy Games</h1>
-                </a>
-            </div>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="terms.html">Terms</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-            </ul>
-        </div>
+<a class="skip" href="#lineup">Skip to content</a>
+<div class="noise" aria-hidden="true"></div>
+
+<header id="nav">
+  <a class="logo" href="#hero" aria-label="ConnectBoy home">
+    <img class="logo-img" src="logo.png" alt="ConnectBoy">
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#lineup">GAMES</a>
+    <a href="#chess-wager">CHESS WAGER</a>
+    <a href="#connectboy">ARCADE</a>
+    <a href="#features">FEATURES</a>
+    <a href="#contact">CONTACT</a>
+  </nav>
+  <a class="btn btn-gold nav-cta" id="btnConnectBoyNav" href="#">GET THE GAMES</a>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
+
+<div id="menu" aria-label="Menu">
+  <a class="mlink" href="#lineup">Games</a>
+  <a class="mlink" href="#chess-wager">Chess Wager</a>
+  <a class="mlink" href="#connectboy">Arcade</a>
+  <a class="mlink" href="#features">Features</a>
+  <a class="mlink" href="#contact">Contact</a>
+  <div class="menu-foot">
+    <a href="terms.html">TERMS</a>
+    <a href="privacy.html">PRIVACY</a>
+    <a href="mailto:connectboygames@gmail.com">EMAIL US</a>
+  </div>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section id="hero">
+  <div class="hbg a" aria-hidden="true"></div>
+  <div class="hbg b" aria-hidden="true"></div>
+  <div class="scrim" aria-hidden="true"></div>
+
+  <div class="shot s1"><div class="tilt" style="--r:-6deg;--dur:11s"><div class="frame"><img src="images/ConnectBoy Games/AllGames.jpg" alt="Chess Wager — live match screenshot" loading="eager"></div></div></div>
+  <div class="shot s2"><div class="tilt" style="--r:5deg;--dur:14s"><div class="frame"><img src="images/ConnectBoy Games/ArcheryReadyShot.jpg" alt="Elite Archery mini-game screenshot" loading="lazy"></div></div></div>
+  <div class="shot s3"><div class="tilt" style="--r:10deg;--dur:16s"><div class="frame"><img src="images/ConnectBoy Games/MiniGolf.jpg" alt="Mini Golf 3D mini-game screenshot" loading="lazy"></div></div></div>
+  <div class="shot s4"><div class="tilt" style="--r:7deg;--dur:12s"><div class="frame"><img src="images/ConnectBoy Games/FourInARow.jpg" alt="Connect Four mini-game screenshot" loading="lazy"></div></div></div>
+  <div class="shot s5"><div class="tilt" style="--r:-4deg;--dur:10s"><div class="frame"><img src="images/ConnectBoy Games/Stats.jpg" alt="Chess Wager — golden queen capture moment" loading="eager"></div></div></div>
+
+  <div class="hero-inner">
+    <p class="kicker rv">CONNECTBOY — MOBILE MULTIPLAYER STUDIO</p>
+    <h1 class="rv">CREATE.<br><span class="outline">CONNECT.</span><br>PLAY.</h1>
+    <p class="hero-sub rv">The multiplayer arcade in your pocket. Two games, real opponents, zero cost to start, play everywhere.</p>
+    <div class="hero-cta rv">
+      <a class="btn btn-gold" id="btnConnectBoyHero" href="#">DOWNLOAD NOW
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+      </a>
+      <a class="btn ghost" href="#lineup">MEET THE GAMES</a>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>FREE TO PLAY</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
+    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>FREE TO PLAY</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
+  </div>
+</div>
+
+<!-- ============ LINEUP ============ -->
+<section id="lineup" class="sec">
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="kicker">THE LINEUP</p>
+      <h2 class="title-xl">TWO GAMES.<br><span class="outline">ZERO FILLER.</span></h2>
+      <p class="sec-sub">Everything we ship exists to be played together. Pick your arena.</p>
+    </div>
+    <div style="margin-top:clamp(44px,6vw,80px)">
+      <a class="row rv" href="#chess-wager">
+        <span class="idx">01</span>
+        <span class="rname">CHESS WAGER</span>
+        <span class="rtag">STRATEGY — HEAD-TO-HEAD</span>
+        <span class="go"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        <img class="peek" src="images/ChessWager/Chess Board.jpg" alt="" aria-hidden="true">
+      </a>
+      <a class="row rv" href="#connectboy">
+        <span class="idx">02</span>
+        <span class="rname">CONNECTBOY GAMES</span>
+        <span class="rtag">PARTY ARCADE — 6 MINI-GAMES</span>
+        <span class="go"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        <img class="peek" src="images/ConnectBoy Games/AllGames.jpg" alt="" aria-hidden="true">
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="checkers" style="--cA:var(--gold)" aria-hidden="true"></div>
+
+<!-- ============ CHESS WAGER ============ -->
+<section id="chess-wager" class="sec">
+  <div class="sec-inner cw-grid">
+    <div>
+      <p class="kicker rv">GAME 01 — STRATEGY</p>
+      <h2 class="title-xl cw-title rv">CHESS<br><span class="o-gold">WAGER</span></h2>
+      <p class="lead rv" style="margin-top:26px">The oldest duel in the world, rebuilt for your pocket. Read the board, set the trap, close the match.</p>
+      <ul class="meta-list rv">
+        <li><span>REAL-TIME DUELS</span><em>Head-to-head chess against live opponents</em></li>
+        <li><span>CLASSIC RULES</span><em>The game you know — tension you don't expect</em></li>
+        <li><span>FREE TO PLAY</span><em>iOS &amp; Android, zero cost to start</em></li>
+      </ul>
+      <div class="cta-row rv">
+        <a class="btn btn-gold" id="btnChessWager" href="#">DOWNLOAD CHESS WAGER</a>
+        <span class="btn-note">FREE ON iOS & ANDROID</span>
+      </div>
+    </div>
+    <div class="cw-comp rv" role="img" aria-label="Chess Wager gameplay screenshots">
+      <div class="frame fb"><img src="images/ChessWager/chessboard-2.jpg" alt="" loading="lazy"></div>
+      <div class="cw-gold" aria-hidden="true"></div>
+      <div class="frame fm"><img src="images/ChessWager/chessboard-1.jpg" alt="" loading="lazy"></div>
+      <div class="sticker">YOUR MOVE ♞</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONNECTBOY ============ -->
+<section id="connectboy" class="sec">
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="kicker">GAME 02 — THE ARCADE</p>
+      <h2 class="title-xl">CONNECTBOY <span style="color:var(--coral)">GAMES</span></h2>
+      <p class="sec-sub">One app, six ways to win. A pocket arcade of quick-fire matches — jump in solo or pass the phone around.</p>
+    </div>
+    <div class="cb-show rv" id="cbShow">
+      <div class="cb-list" id="selList" aria-label="ConnectBoy mini-games"></div>
+      <div class="cb-stage">
+        <span class="cb-ghost" id="cbGhost" aria-hidden="true">ELITE ARCHERY</span>
+        <div class="frame cb-frame"><img id="cbImg" src="images/ConnectBoy Games/ArcheryReadyShot.jpg" alt="Elite Archery screenshot"></div>
+        <div class="cb-bar" aria-hidden="true"><i id="selBarI"></i></div>
+        <span class="chip chip-a">1 APP</span>
+        <span class="chip chip-b">6 GAMES</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" class="sec">
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="kicker">THE PLATFORM</p>
+      <h2 class="title-xl">BUILT FOR<br><span class="outline">THE MATCH.</span></h2>
+      <p class="sec-sub">Every ConnectBoy title ships with the same six promises.</p>
+    </div>
+    <div style="margin-top:clamp(44px,6vw,80px)">
+      <article class="frow rv">
+        <span class="fid">01</span>
+        <div><h3>PLAY TOGETHER</h3><p>Real-time multiplayer with friends and public rivals. Connect instantly, compete instantly.</p></div>
+        <div class="fside"><img src="images/ConnectBoy Games/MiniSoccer.jpg" alt="Compact Soccer screenshot" loading="lazy"></div>
+      </article>
+      <article class="frow rv">
+        <span class="fid">02</span>
+        <div><h3>PLAY ANYWHERE</h3><p>Play on iOS or play on Android. Your progress moves with you across devices.</p></div>
+        <div class="fside"><span class="tagchip">iOS ↔ ANDROID</span></div>
+      </article>
+      <article class="frow rv">
+        <span class="fid">03</span>
+        <div><h3>PLAY PROTECTED</h3><p>High-grade encryption and privacy-first defaults keep every match safe.</p></div>
+        <div class="fside"><span class="tagchip">ENCRYPTED</span></div>
+      </article>
+      <article class="frow rv">
+        <span class="fid">04</span>
+        <div><h3>NEVER THE SAME</h3><p>New games, features and content land regularly — the arcade keeps growing.</p></div>
+        <div class="fside"><img src="images/ConnectBoy Games/ArcheryReadyShot.jpg" alt="Elite Archery screenshot" loading="lazy"></div>
+      </article>
+      <article class="frow rv">
+        <span class="fid">05</span>
+        <div><h3>SQUAD UP</h3><p>Chat with opponents during matches.</p></div>
+        <div class="fside"><span class="tagchip">CLANS + CHAT</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="ticker coral" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>START FREE</span><i>✦</i></div>
+    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>START FREE</span><i>✦</i></div>
+  </div>
+</div>
+
+<!-- ============ STUDIO ============ -->
+<section id="studio" class="sec">
+  <div class="sec-inner">
+    <p class="kicker rv">THE STUDIO</p>
+    <h2 class="studio-quote rv">"WE MAKE GAMES FOR THE LEAN-IN MOMENT. WHEN A MATCH GETS REAL AND EVERYONE STOPS SCROLLING."</h2>
+    <p class="studio-p rv">Connect Boy is an independent mobile games studio in Garki, Abuja. We build innovative, engaging multiplayer experiences that are easy to pick up and hard to put down — on a foundation of fair play, security and respect for every player.</p>
+    <div class="studio-meta rv">
+      <span>TWO GAMES. ONE ARCADE.</span>
+      <span>GARKI, ABUJA — NIGERIA</span>
+      <span>MADE FOR PLAYERS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="sec">
+  <div class="sec-inner ct-grid">
+    <div>
+      <p class="kicker rv">CONTACT</p>
+      <h2 class="title-xl rv">TALK TO<br><span class="outline">THE STUDIO.</span></h2>
+      <div style="margin-top:40px" class="rv">
+        <div class="c-line"><span class="cl">EMAIL</span><a class="cv" href="mailto:connectboygames@gmail.com">connectboygames@gmail.com</a></div>
+        <div class="c-line"><span class="cl">PHONE</span><a class="cv" style="font-family:var(--body);font-size:1.05rem;font-weight:600" href="tel:+2349067515176">+234 906 751 5176</a></div>
+        <div class="c-line"><span class="cl">STUDIO</span><span class="cv">Garki, Abuja, Nigeria</span></div>
+        <div class="c-line"><span class="cl">HOURS</span><span class="cv">Monday – Friday, 9:00 – 18:00 WAT</span></div>
+      </div>
+    </div>
+    <form id="cform" class="rv" novalidate="false">
+      <h3 class="form-title">SEND US A MESSAGE</h3>
+      <div class="field"><label for="fname">Your name</label><input id="fname" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" required></div>
+      <div class="field"><label for="fmsg">Message</label><textarea id="fmsg" name="message" rows="4" required></textarea></div>
+      <button class="btn btn-gold" id="fbtn" type="submit">SEND MESSAGE</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="foot-logo" aria-hidden="true"><img src="logo.png" alt="ConnectBoy"></div>
+  <div class="foot-row">
+    <span>© 2026 CONNECT BOY. ALL RIGHTS RESERVED.</span>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#hero">HOME</a>
+      <a href="#features">FEATURES</a>
+      <a href="#contact">CONTACT</a>
+      <a href="terms.html">TERMS OF SERVICE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
     </nav>
+    <div class="foot-social">
+      <a href="https://www.facebook.com/share/1BjZuaaWpX/?mibextid=wwXIfr">FACEBOOK</a>
+      <a href="https://x.com/connectboy_cnb?s=11">X</a>
+      <a href="https://www.instagram.com/connectboygames?igsi=MTluZ3l4YTBmbWE3">INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="checkers foot-check" aria-hidden="true"></div>
+</footer>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Welcome to <span class="text-accent">ConnectBoy Games</span></h1>
-                <p>Create, Connect, and Play Amazing Mobile Games</p>
-                <p class="hero-subtitle">Experience the ultimate multiplayer gaming platform for mobile devices</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary">Download Now</a>
-                    <a href="#features" class="btn btn-secondary">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+(function(){
+  "use strict";
+  var $ = function(s){ return document.querySelector(s); };
+  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    <!-- Features Section -->
-    <section id="features" class="features">
-        <div class="container">
-            <h2>Why Choose Connect Boy?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3>Multiplayer Gaming</h3>
-                    <p>Play with friends and gamers worldwide in real-time multiplayer experiences. Connect instantly
-                        and compete in thrilling matches.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Cross-Platform</h3>
-                    <p>Seamlessly play across iOS and Android devices. Start on one device and continue on another
-                        without losing progress.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Secure & Safe</h3>
-                    <p>Your data is protected with enterprise-grade encryption. We prioritize user privacy and security
-                        above all else.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Regular Updates</h3>
-                    <p>Enjoy new games, features, and content updates regularly. We're constantly improving your gaming
-                        experience.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Social Features</h3>
-                    <p>Build your gaming community. Chat with friends, join clans, and participate in tournaments.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Free to Play</h3>
-                    <p>Start playing immediately at no cost. Optional in-game purchases for enhanced experiences.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  /* store links */
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(navigator.userAgent);
+  var STORE = {
+    connectboy: {
+      ios: "APP_STORE_CONNECTBOY_URL",
+      android: "https://play.google.com/store/apps/details?id=com.GreatValleyTechnologies.ConnectBoy"
+    },
+    chesswager: {
+      ios: "APP_STORE_CHESS_WAGER_URL",
+      android: "https://play.google.com/store/apps/details?id=com.chesswager.gen2"
+    }
+  };
+  function storeUrl(game){
+    var urls = STORE[game];
+    if(isIOS && urls.ios && urls.ios.indexOf("APP_STORE_") !== 0) return urls.ios;
+    if(isAndroid || !urls.ios || urls.ios.indexOf("APP_STORE_") === 0) return urls.android;
+    return urls.android;
+  }
+  var btnCB = $("#btnConnectBoyNav"), btnCBHero = $("#btnConnectBoyHero"), btnCW = $("#btnChessWager");
+  if(btnCB) btnCB.href = storeUrl("connectboy");
+  if(btnCBHero) btnCBHero.href = storeUrl("connectboy");
+  if(btnCW) btnCW.href = storeUrl("chesswager");
 
-    <!-- Games Section -->
-    <section class="games">
-        <div class="container">
-            <h2>Our Games</h2>
-            <p class="section-subtitle">Explore our collection of engaging multiplayer games</p>
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-icon">🏹</div>
-                    <h3>Elite Archery</h3>
-                    <p>Test your precision and timing in realistic archery challenges with wind effects.</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">🔴</div>
-                    <h3>Connect Four</h3>
-                    <p>Classic strategy game. Align four discs before your opponent to win.</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">✍️</div>
-                    <h3>Dots and Boxes</h3>
-                    <p>Strategic pencil-and-paper game. Claim more territory by completing boxes.</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">⛳</div>
-                    <h3>Mini Golf 3D</h3>
-                    <p>Master challenging courses with precision putting and creative shots.</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">⚽</div>
-                    <h3>Compact Soccer</h3>
-                    <p>Fast-paced sports action on a mini pitch for ultimate competition.</p>
-                </div>
-                <div class="game-card">
-                    <div class="game-icon">⭕</div>
-                    <h3>Tic Tac Toe</h3>
-                    <p>The timeless classic reimagined for quick and fun multiplayer matches.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  /* nav scroll state */
+  var nav = $("#nav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 40); }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <h2>About Connect Boy</h2>
-            <div class="about-content">
-                <p>Connect Boy is a leading mobile gaming platform dedicated to bringing players together through
-                    innovative, engaging multiplayer experiences. Founded with a passion for gaming and social
-                    connection, we develop high-quality games that prioritize user satisfaction, security, and fair
-                    play.</p>
-                <p>Our mission is to create a welcoming gaming community where players of all levels can enjoy
-                    competitive and casual gaming experiences.</p>
-            </div>
-        </div>
-    </section>
+  /* mobile menu */
+  var burger = $("#burger"), menu = $("#menu");
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    document.body.classList.toggle("no-scroll", open);
+    burger.classList.toggle("x", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  burger.addEventListener("click", function(){ setMenu(!menu.classList.contains("open")); });
+  $$("#menu a").forEach(function(a){ a.addEventListener("click", function(){ setMenu(false); }); });
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    <p><strong>Email:</strong> connectboygames@gmail.com</p>
-                    <p><strong>Phone:</strong>⁠+2349067515176</p>
-                    <p><strong>Address:</strong> Address: Garki, Abuja, Nigeria</p>
-                    <p><strong>Hours:</strong> Monday - Friday, 9 AM - 6 PM (WAT)</p>
-                </div>
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+  /* scroll reveal */
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    $$(".rv").forEach(function(el){ io.observe(el); });
+  } else {
+    $$(".rv").forEach(function(el){ el.classList.add("in"); });
+  }
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Connect Boy</h4>
-                    <p>Your ultimate mobile gaming destination</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="#features">Features</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Connect Boy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+  /* mini-game selector */
+  var MINI = [
+    {name:"ARCHERY", blurb:"Precision shots. Wind that fights back.", accent:"#FFD23F",
+     img:"images/ConnectBoy Games/ArcheryReadyShot.jpg"},
+    {name:"FOUR IN A ROW", blurb:"Drop, block, line up four.", accent:"#FF5147",
+     img:"images/ConnectBoy Games/FourInARow.jpg"},
+    {name:"DOTS & BOXES", blurb:"Steal territory one box at a time.", accent:"#4FE0A6",
+     img:"images/ConnectBoy Games/DotsAndBoxes.jpg"},
+    {name:"MINI GOLF", blurb:"Wild courses. Trick putts.", accent:"#8BE563",
+     img:"images/ConnectBoy Games/MiniGolf.jpg"},
+    {name:"MINI SOCCER", blurb:"Pocket-sized football, full speed.", accent:"#5EC6FF",
+     img:"images/ConnectBoy Games/MiniSoccer.jpg"},
+    {name:"TIC TAC TOE", blurb:"The classic. Rematch-ready.", accent:"#FF7BC1",
+     img:"images/ConnectBoy Games/XandO.jpg"}
+  ];
+  var list = $("#selList"), stageImg = $("#cbImg"), ghost = $("#cbGhost"),
+      barI = $("#selBarI"), show = $("#cbShow");
+  var cur = 0, timer = null, AUTO_MS = 5200;
 
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+  MINI.forEach(function(g, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "sel-btn";
+    b.style.setProperty("--g", g.accent);
+    b.setAttribute("aria-label", "Show " + g.name);
+    b.innerHTML =
+      '<span class="sn">' + String(i+1).padStart(2,"0") + '</span>' +
+      '<span class="sname">' + g.name + '</span>' +
+      '<span class="sblurb">' + g.blurb + '</span>';
+    b.addEventListener("click", function(){ go(i); restartAuto(); });
+    list.appendChild(b);
+  });
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
+  function restartBar(){
+    barI.style.animation = "none";
+    void barI.offsetWidth;
+    barI.style.animation = "";
+  }
+  function go(i){
+    cur = i;
+    var g = MINI[i];
+    $$("#selList .sel-btn").forEach(function(b, j){ b.classList.toggle("active", j === i); });
+    stageImg.src = g.img;
+    stageImg.alt = g.name + " screenshot";
+    stageImg.classList.remove("pop");
+    void stageImg.offsetWidth;
+    stageImg.classList.add("pop");
+    ghost.textContent = g.name;
+    ghost.classList.remove("slide");
+    void ghost.offsetWidth;
+    ghost.classList.add("slide");
+    show.style.setProperty("--gcur", g.accent);
+    restartBar();
+  }
+  function next(){ go((cur + 1) % MINI.length); }
+  function restartAuto(){
+    if(reduced) return;
+    clearInterval(timer);
+    timer = setInterval(next, AUTO_MS);
+  }
+  show.addEventListener("mouseenter", function(){ clearInterval(timer); show.classList.add("paused"); });
+  show.addEventListener("mouseleave", function(){ show.classList.remove("paused"); restartAuto(); });
+  show.addEventListener("focusin", function(){ clearInterval(timer); show.classList.add("paused"); });
+  show.addEventListener("focusout", function(){ show.classList.remove("paused"); restartAuto(); });
+  go(0); restartAuto();
+
+  /* contact form -> mailto (no backend touched) */
+  var form = $("#cform");
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var n = $("#fname").value.trim(),
+        m = $("#femail").value.trim(),
+        msg = $("#fmsg").value.trim();
+    if(!n || !m || !msg){ return; }
+    var btn = $("#fbtn");
+    var subj = encodeURIComponent("Message from " + n + " — ConnectBoy site");
+    var body = encodeURIComponent(msg + "\n\n— " + n + "\n" + m);
+    btn.textContent = "OPENING MAIL APP…";
+    window.location.href = "mailto:connectboygames@gmail.com?subject=" + subj + "&body=" + body;
+    setTimeout(function(){ btn.textContent = "SEND MESSAGE"; }, 3500);
+  });
+})();
+</script>
 </body>
-
 </html>
