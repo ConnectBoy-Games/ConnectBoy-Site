@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ConnectBoy Games — Create. Connect. Play.</title>
-<meta name="description" content="ConnectBoy is an independent mobile games studio. Chess Wager and ConnectBoy Games — real-time multiplayer, free to play on iOS and Android.">
+<meta name="description" content="ConnectBoy is an independent mobile games studio. Chess Wager and ConnectBoy Games — real-time multiplayer with real money wagering, no download fee on iOS and Android.">
 <link rel="icon" href="logo.png" type="image/png" sizes="32x32">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/anton@latest/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/400.css">
@@ -64,7 +64,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 #nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:10px clamp(20px,4vw,48px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 #nav.scrolled{background:rgba(11,12,15,.94);border-bottom-color:var(--line)}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-img{height:40px;width:auto;display:block}
+.logo-img{height:56px;width:auto;display:block;margin:-6px 0}
 .nav-links{display:flex;gap:26px}
 .nav-links a{font-family:var(--disp);font-size:14px;font-weight:400;letter-spacing:.08em;text-decoration:none;color:var(--dim);transition:color .2s}
 .nav-links a:hover{color:var(--gold)}
@@ -207,7 +207,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 
 /* ---------- contact ---------- */
 #contact{background:var(--ink)}
-.ct-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);gap:clamp(44px,6vw,100px)}
+.ct-grid{display:grid;grid-template-columns:1fr;max-width:520px;gap:clamp(44px,6vw,100px)}
 .c-line{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line)}
 .c-line:last-of-type{border-bottom:1px solid var(--line)}
 .c-line .cl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
@@ -320,7 +320,7 @@ footer{background:#060708}
   <div class="hero-inner">
     <p class="kicker rv">CONNECTBOY — MOBILE MULTIPLAYER STUDIO</p>
     <h1 class="rv">CREATE.<br><span class="outline">CONNECT.</span><br>PLAY.</h1>
-    <p class="hero-sub rv">The multiplayer arcade in your pocket. Two games, real opponents, zero cost to start, play everywhere.</p>
+    <p class="hero-sub rv">The multiplayer arcade in your pocket. Two games, real opponents, no download fee. Wager and win real money — play everywhere.</p>
     <div class="hero-cta rv">
       <a class="btn btn-gold" id="btnConnectBoyHero" href="#">DOWNLOAD NOW
         <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
@@ -332,8 +332,8 @@ footer{background:#060708}
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>FREE TO PLAY</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
-    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>FREE TO PLAY</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
+    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>NO DOWNLOAD FEE</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
+    <div class="tk"><span>CHESS WAGER</span><i>✦</i><span>CONNECTBOY GAMES</span><i>✦</i><span>NO DOWNLOAD FEE</span><i>✦</i><span>REAL-TIME MULTIPLAYER</span><i>✦</i><span>iOS + ANDROID</span><i>✦</i></div>
   </div>
 </div>
 
@@ -349,14 +349,14 @@ footer{background:#060708}
       <a class="row rv" href="#chess-wager">
         <span class="idx">01</span>
         <span class="rname">CHESS WAGER</span>
-        <span class="rtag">STRATEGY — HEAD-TO-HEAD</span>
+        <span class="rtag">STRATEGY — HEAD-TO-HEAD — WAGER</span>
         <span class="go"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
         <img class="peek" src="images/ChessWager/Chess Board.jpg" alt="" aria-hidden="true">
       </a>
       <a class="row rv" href="#connectboy">
         <span class="idx">02</span>
         <span class="rname">CONNECTBOY GAMES</span>
-        <span class="rtag">PARTY ARCADE — 6 MINI-GAMES</span>
+        <span class="rtag">PARTY ARCADE — 6 MINI-GAMES — REAL MONEY</span>
         <span class="go"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M4 12h14M12 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
         <img class="peek" src="images/ConnectBoy Games/AllGames.jpg" alt="" aria-hidden="true">
       </a>
@@ -372,11 +372,11 @@ footer{background:#060708}
     <div>
       <p class="kicker rv">GAME 01 — STRATEGY</p>
       <h2 class="title-xl cw-title rv">CHESS<br><span class="o-gold">WAGER</span></h2>
-      <p class="lead rv" style="margin-top:26px">The oldest duel in the world, rebuilt for your pocket. Read the board, set the trap, close the match.</p>
+      <p class="lead rv" style="margin-top:26px">The oldest duel in the world, rebuilt for your pocket. Read the board, set the trap, close the match. Wager real money on every game you play.</p>
       <ul class="meta-list rv">
         <li><span>REAL-TIME DUELS</span><em>Head-to-head chess against live opponents</em></li>
-        <li><span>CLASSIC RULES</span><em>The game you know — tension you don't expect</em></li>
-        <li><span>FREE TO PLAY</span><em>iOS &amp; Android, zero cost to start</em></li>
+        <li><span>WAGER & WIN</span><em>Bet on yourself and collect real winnings</em></li>
+        <li><span>NO DOWNLOAD FEE</span><em>iOS &amp; Android</em></li>
       </ul>
       <div class="cta-row rv">
         <a class="btn btn-gold" id="btnChessWager" href="#">DOWNLOAD CHESS WAGER</a>
@@ -398,7 +398,7 @@ footer{background:#060708}
     <div class="rv">
       <p class="kicker">GAME 02 — THE ARCADE</p>
       <h2 class="title-xl">CONNECTBOY <span style="color:var(--coral)">GAMES</span></h2>
-      <p class="sec-sub">One app, six ways to win. A pocket arcade of quick-fire matches — jump in solo or pass the phone around.</p>
+      <p class="sec-sub">One app, six ways to win. A pocket arcade of quick-fire matches — jump in solo or pass the phone around. Wager and win real money on every match.</p>
     </div>
     <div class="cb-show rv" id="cbShow">
       <div class="cb-list" id="selList" aria-label="ConnectBoy mini-games"></div>
@@ -453,8 +453,8 @@ footer{background:#060708}
 
 <div class="ticker coral" aria-hidden="true">
   <div class="ticker-track">
-    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>START FREE</span><i>✦</i></div>
-    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>START FREE</span><i>✦</i></div>
+    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>NO DOWNLOAD FEE</span><i>✦</i></div>
+    <div class="tk"><span>PLAY TOGETHER</span><i>✦</i><span>PLAY ANYWHERE</span><i>✦</i><span>PLAY PROTECTED</span><i>✦</i><span>ALWAYS NEW</span><i>✦</i><span>SQUAD UP</span><i>✦</i><span>NO DOWNLOAD FEE</span><i>✦</i></div>
   </div>
 </div>
 
@@ -485,13 +485,6 @@ footer{background:#060708}
         <div class="c-line"><span class="cl">HOURS</span><span class="cv">Monday – Friday, 9:00 – 18:00 WAT</span></div>
       </div>
     </div>
-    <form id="cform" class="rv" novalidate="false">
-      <h3 class="form-title">SEND US A MESSAGE</h3>
-      <div class="field"><label for="fname">Your name</label><input id="fname" name="name" type="text" autocomplete="name" required></div>
-      <div class="field"><label for="femail">Email</label><input id="femail" name="email" type="email" autocomplete="email" required></div>
-      <div class="field"><label for="fmsg">Message</label><textarea id="fmsg" name="message" rows="4" required></textarea></div>
-      <button class="btn btn-gold" id="fbtn" type="submit">SEND MESSAGE</button>
-    </form>
   </div>
 </section>
 </main>
@@ -640,22 +633,6 @@ footer{background:#060708}
   show.addEventListener("focusin", function(){ clearInterval(timer); show.classList.add("paused"); });
   show.addEventListener("focusout", function(){ show.classList.remove("paused"); restartAuto(); });
   go(0); restartAuto();
-
-  /* contact form -> mailto (no backend touched) */
-  var form = $("#cform");
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    var n = $("#fname").value.trim(),
-        m = $("#femail").value.trim(),
-        msg = $("#fmsg").value.trim();
-    if(!n || !m || !msg){ return; }
-    var btn = $("#fbtn");
-    var subj = encodeURIComponent("Message from " + n + " — ConnectBoy site");
-    var body = encodeURIComponent(msg + "\n\n— " + n + "\n" + m);
-    btn.textContent = "OPENING MAIL APP…";
-    window.location.href = "mailto:connectboygames@gmail.com?subject=" + subj + "&body=" + body;
-    setTimeout(function(){ btn.textContent = "SEND MESSAGE"; }, 3500);
-  });
 })();
 </script>
 </body>

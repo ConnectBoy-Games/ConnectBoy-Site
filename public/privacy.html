@@ -1,227 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Connect Boy</title>
-    <link rel="stylesheet" href="style-v2.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy - Connect Boy</title>
+<meta name="description" content="ConnectBoy Privacy Policy — how we collect, use, and safeguard your information when you use our website and gaming services.">
+<link rel="icon" href="logo.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/anton@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/800.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/600.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --ink:#0B0C0F; --ink2:#0E1016; --paper:#F3EFE4; --dim:rgba(243,239,228,.62);
+  --line:rgba(243,239,228,.16);
+  --gold:#3B82F6; --gold-deep:#1D4ED8;
+  --disp:'Anton',Impact,sans-serif; --body:'Archivo',Helvetica,sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden}
+body.no-scroll{overflow:hidden}
+a{color:inherit}
+::selection{background:var(--gold);color:#151208}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#151208;padding:10px 18px;z-index:200;font-family:var(--mono)}
+.skip:focus{left:12px;top:12px}
+
+.noise{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+.checkers{--cA:var(--paper);--cB:transparent;--cs:12px;height:var(--cs);
+ background:conic-gradient(var(--cA) 0 25%,var(--cB) 0 50%);background-size:calc(var(--cs)*2) calc(var(--cs)*2)}
+
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:36px;height:2px;background:currentColor;flex:none}
+
+/* ---------- nav (shared with index) ---------- */
+#nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(20px,4vw,48px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent;background:rgba(11,12,15,.94)}
+#nav.scrolled{border-bottom-color:var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-img{height:56px;width:auto;display:block;margin:-6px 0}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.16em;text-decoration:none;color:var(--dim);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a[aria-current="page"]{color:var(--gold)}
+.burger{display:none;background:none;border:0;width:40px;height:34px;cursor:pointer;position:relative;z-index:70}
+.burger span{position:absolute;left:7px;right:7px;height:2px;background:var(--paper);transition:transform .3s,top .3s}
+.burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:20px}
+.burger.x span:nth-child(1){top:16px;transform:rotate(45deg)}
+.burger.x span:nth-child(2){top:16px;transform:rotate(-45deg)}
+#menu{position:fixed;inset:0;z-index:50;background:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:100px clamp(24px,8vw,80px) 50px;gap:6px;opacity:0;pointer-events:none;transition:opacity .35s}
+#menu.open{opacity:1;pointer-events:auto}
+#menu a.mlink{font-family:var(--disp);font-size:clamp(2.2rem,8vw,3.6rem);text-transform:uppercase;text-decoration:none;line-height:1.16;color:var(--paper)}
+#menu a.mlink:hover{color:var(--gold)}
+#menu .menu-foot{margin-top:auto;display:flex;gap:22px;flex-wrap:wrap}
+#menu .menu-foot a{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-decoration:none}
+
+/* ---------- doc hero ---------- */
+.doc-hero{position:relative;padding:150px clamp(20px,5vw,64px) 46px;overflow:hidden}
+.doc-hero .ghost{position:absolute;top:24px;right:-12px;font-family:var(--disp);font-size:clamp(5rem,18vw,15rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(243,239,228,.09);text-transform:uppercase;pointer-events:none;user-select:none}
+.doc-hero h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.92;font-size:clamp(3rem,9vw,7.5rem);margin-top:22px;max-width:12ch}
+.doc-meta{margin-top:30px;display:flex;gap:34px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--dim)}
+.doc-meta b{color:var(--paper);font-weight:600}
+
+/* ---------- doc layout ---------- */
+.doc-wrap{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(36px,5vw,90px);padding:clamp(40px,6vw,70px) clamp(20px,5vw,64px);max-width:1360px;margin:0 auto;align-items:start}
+.rail{position:sticky;top:110px}
+.rail-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--dim);margin-bottom:16px}
+.toc{list-style:none;display:flex;flex-direction:column}
+.toc a{display:flex;gap:14px;align-items:baseline;padding:9px 10px 9px 0;text-decoration:none;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--dim);border-left:2px solid transparent;transition:color .2s,border-color .2s,padding .2s}
+.toc a .n{color:rgba(243,239,228,.35);font-size:11px}
+.toc a:hover{color:var(--paper)}
+.toc a.active{color:var(--gold);border-left-color:var(--gold);padding-left:12px}
+.toc a.active .n{color:var(--gold)}
+
+.doc{max-width:760px}
+.doc section{padding:44px 0 10px;border-top:1px solid var(--line)}
+.doc section:first-child{border-top:0;padding-top:8px}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:20px}
+.sec-num{font-family:var(--disp);font-size:1.7rem;color:transparent;-webkit-text-stroke:1.2px var(--gold);flex:none;line-height:1}
+.doc h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:.02em;line-height:1.1}
+.doc h3{font-family:var(--body);font-weight:700;font-size:1.05rem;letter-spacing:.02em;margin:30px 0 12px;color:var(--paper)}
+.doc h3 .h3n{font-family:var(--mono);font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.14em;margin-right:10px}
+.doc p{color:var(--dim);margin-bottom:16px}
+.doc p strong,.doc li strong{color:var(--paper)}
+.doc p:last-child{margin-bottom:0}
+
+/* data rows (definition lists) */
+.data-list{list-style:none;margin:18px 0 6px}
+.data-list li{display:grid;grid-template-columns:230px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.data-list li:last-child{border-bottom:1px solid var(--line)}
+.data-list .dt{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.data-list .dd{color:var(--dim)}
+
+/* highlight pull statement */
+.pull{border-left:3px solid var(--gold);padding:6px 0 6px 20px;margin:6px 0 22px;font-family:var(--body);font-weight:800;font-size:clamp(1.15rem,2.2vw,1.5rem);line-height:1.35;color:var(--paper)}
+
+/* DPO card */
+.dpo-card{position:relative;border:1px solid var(--line);background:var(--ink2);padding:30px 28px;margin:18px 0}
+.dpo-card::before{content:"";position:absolute;top:-7px;left:26px;width:14px;height:14px;background:conic-gradient(var(--gold) 0 25%,var(--ink) 0 50%);background-size:7px 7px;border:1px solid var(--paper)}
+.dpo-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--dim);margin-bottom:18px}
+.dpo-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--line);align-items:baseline}
+.dpo-row .cl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.dpo-row .cv{font-weight:600}
+.dpo-row a.cv{text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dpo-row a.cv:hover{color:var(--gold);border-color:var(--gold)}
+.dpo-note{margin-top:16px;color:var(--dim)}
+
+.regional .data-list li{grid-template-columns:180px 1fr}
+
+/* back to top */
+.doc-end{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:36px 0 8px;border-top:1px solid var(--line);margin-top:30px}
+.doc-end .mono-tag{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--dim)}
+.top-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-size:1rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--paper);transition:color .2s}
+.top-link:hover{color:var(--gold)}
+.top-link svg{transition:transform .25s}
+.top-link:hover svg{transform:translateY(-3px)}
+
+/* ---------- footer (shared with index) ---------- */
+footer{background:#060708;margin-top:clamp(60px,8vw,100px)}
+.foot-logo{font-family:var(--disp);font-size:clamp(2.6rem,12.5vw,11.5rem);line-height:.9;text-align:center;padding:70px 16px 8px;user-select:none;letter-spacing:.02em}
+.foot-logo img{height:clamp(3rem,12.5vw,11.5rem);width:auto;display:inline-block;filter:drop-shadow(0 0 1px rgba(243,239,228,.22))}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;padding:34px clamp(20px,5vw,64px) 44px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim)}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a,.foot-social a{color:var(--dim);text-decoration:none;transition:color .2s}
+.foot-links a:hover,.foot-social a:hover{color:var(--gold)}
+.foot-social{display:flex;gap:22px}
+.foot-check{--cA:var(--gold)}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .doc-wrap{grid-template-columns:1fr}
+  .rail{position:static}
+  .toc{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:8px;scrollbar-width:thin}
+  .toc a{white-space:nowrap;border-left:0;border:1px solid var(--line);padding:8px 12px}
+  .toc a.active{border-color:var(--gold);padding-left:12px}
+  .rail-title{display:none}
+}
+@media (max-width:640px){
+  .data-list li,.dpo-row,.regional .data-list li{grid-template-columns:1fr;gap:4px}
+  .doc-hero{padding-top:120px}
+  .foot-row{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .js .rv{opacity:1;transform:none}
+}
+@media print{
+  #nav,#menu,.noise,.burger,.doc-end,footer,.checkers,.doc-hero .ghost{display:none !important}
+  body{background:#fff;color:#000}
+  .doc-wrap{display:block;padding:0}
+  .doc p,.data-list .dd,.dpo-note{color:#222}
+  .doc h1,.doc h2,.doc h3,.pull,.data-list .dt{color:#000;-webkit-text-stroke:0}
+  .doc-hero h1{color:#000}
+}
+</style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>ConnectBoy Games</h1>
-            </div>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="terms.html">Terms</a></li>
-                <li><a href="privacy.html" class="active">Privacy</a></li>
-            </ul>
-        </div>
-    </nav>
+<a class="skip" href="#doc">Skip to content</a>
+<div class="noise" aria-hidden="true"></div>
 
-    <!-- Main Content -->
-    <div class="legal-container">
-        <div class="container">
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last Updated: March 16, 2026</p>
+<header id="nav">
+  <a class="logo" href="index.html" aria-label="ConnectBoy home">
+    <img class="logo-img" src="logo.png" alt="ConnectBoy">
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">HOME</a>
+    <a href="index.html#features">FEATURES</a>
+    <a href="index.html#contact">CONTACT</a>
+    <a href="terms.html">TERMS</a>
+    <a href="privacy.html" aria-current="page">PRIVACY</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
 
-            <section class="legal-section">
-                <h2>1. Introduction</h2>
-                <p>ConnectBoy ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy
-                    Policy explains how we collect, use, disclose, and safeguard your
-                    information when you use our website and gaming services (the "Service").</p>
-                <p>We prioritize transparency and user control, ensuring that your gaming experience remains secure. By
-                    using our Service, you agree to the collection and use of information in accordance with this
-                    policy.</p>
-            </section>
+<div id="menu" aria-label="Menu">
+  <a class="mlink" href="index.html">Home</a>
+  <a class="mlink" href="index.html#features">Features</a>
+  <a class="mlink" href="index.html#contact">Contact</a>
+  <a class="mlink" href="terms.html">Terms</a>
+  <a class="mlink" href="privacy.html">Privacy</a>
+  <div class="menu-foot">
+    <a href="mailto:connectboygames@gmail.com">EMAIL US</a>
+    <a href="tel:+2349067515176">+234 906 751 5176</a>
+  </div>
+</div>
 
-            <section class="legal-section">
-                <h2>2. Information We Collect</h2>
-                <p><strong>2.1 Information You Provide Directly</strong></p>
-                <ul>
-                    <li><strong>Account Registration:</strong> Username, email address, password, and optional display
-                        name</li>
-                    <li><strong>Referral Program:</strong> Referral codes and points earned through our player
-                        recruitment system</li>
-                    <li><strong>Payment Metadata:</strong> Transaction history, wallet balances, and reference tokens
-                        (actual payment processing is handled by secure third-party providers)</li>
-                    <li><strong>Communication:</strong> User-to-user invites, support tickets, and system notifications
-                    </li>
-                </ul>
-
-                <p><strong>2.2 Information Collected Automatically</strong></p>
-                <ul>
-                    <li><strong>Device Tokens & Identifiers:</strong> Push notification tokens (FCM) and platform type
-                        (iOS/Android/Web)</li>
-                    <li><strong>Gameplay Dynamics:</strong> High scores, achievements, and game session data</li>
-                    <li><strong>Access Logs:</strong> IP address, browser type, and approximate location for regional
-                        compliance</li>
-                    <li><strong>Social Logins:</strong> Provider keys from third-party services like Google and Apple
-                        (if used for authentication)</li>
-                </ul>
-            </section>
-
-            <section class="legal-section">
-                <h2>3. AI and Machine Learning Usage</h2>
-                <p>To provide a better gaming experience, we may use Artificial Intelligence (AI) and Machine Learning
-                    (ML) technologies for:</p>
-                <ul>
-                    <li><strong>Fair Play & Anti-Cheat:</strong> Detecting anomalous gameplay patterns to prevent unfair
-                        advantages</li>
-                    <li><strong>In-Game Matchmaking:</strong> Optimizing player matching based on skill level and
-                        latency</li>
-                    <li><strong>Content Optimization:</strong> Improving game balance and suggested features based on
-                        player trends</li>
-                </ul>
-                <p>We do not use AI for significant automated decision-making without appropriate oversight.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>4. How We Use Your Information</h2>
-                <p>We use the information we collect for the following purposes:</p>
-                <ul>
-                    <li><strong>Account Management:</strong> Maintaining your profile, wallet, and referral track record
-                    </li>
-                    <li><strong>Service Continuity:</strong> Managing real-time game sessions and synchronization</li>
-                    <li><strong>Security:</strong> Preventing fraud, unauthorized account access, and malicious behavior
-                    </li>
-                    <li><strong>Engagement:</strong> Sending push notifications for game invites and account updates
-                    </li>
-                    <li><strong>Compliance:</strong> Meeting regulatory requirements and responding to legal requests
-                    </li>
-                </ul>
-            </section>
-
-            <section class="legal-section">
-                <h2>5. Information Sharing and Disclosure</h2>
-                <p>We do not sell your personal data. Sharing only occurs in limited circumstances:</p>
-                <ul>
-                    <li><strong>Third-Party Providers:</strong> Cloud hosting, push notification services, and payment
-                        gateways</li>
-                    <li><strong>Public Profiles:</strong> Usernames and rankings visible on global leaderboards</li>
-                    <li><strong>Legal Necessity:</strong> When required to comply with law or protect our rights and
-                        safety</li>
-                    <li><strong>Corporate Transactions:</strong> During mergers, acquisitions, or asset transfers</li>
-                </ul>
-            </section>
-
-            <section class="legal-section">
-                <h2>6. Your Privacy Rights & Control</h2>
-                <p>We provide tools to manage your personal information:</p>
-                <ul>
-                    <li><strong>Account Update:</strong> Change your username and profile details directly via settings
-                    </li>
-                    <li><strong>Account Deletion:</strong> Request the permanent removal of your account and all
-                        associated data</li>
-                    <li><strong>Data Access:</strong> Request a summary of the data we hold regarding your account</li>
-                    <li><strong>Revocation:</strong> Withdraw consent for non-essential data processing at any time</li>
-                </ul>
-                <p>To exercise these rights, please contact our Privacy Team at connectboygames@gmail.com.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>7. International Data Protection</h2>
-                <p>We operate globally and may transfer data to jurisdictions with different protection laws. We
-                    implement standard safeguards to ensure your data remains protected regardless of its processing
-                    location.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>8. Children's Privacy</h2>
-                <p>Connect Boy does not knowingly collect data from children under 13. If we become aware of such data,
-                    we will take immediate steps to delete it. We recommend parental supervision for users under 18.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>9. Data Security</h2>
-                <p>We implement robust technical and organizational measures to protect your data, including password
-                    hashing (BCrypt), secure token-based authentication, and encryption during transit.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>10. Contact and Inquiries</h2>
-                <p>
-                    <strong>Connect Boy Data Protection Office</strong><br>
-                    Email: connectboygames@gmail.com<br>
-                    Address: Garki, Abuja, Nigeria<br>
-                    Phone: +2349067515176<br>
-                    We aim to respond to all inquiries within 30 days.
-                </p>
-            </section>
-
-            <section class="legal-section">
-                <h2>11. Regional Information</h2>
-                <p><strong>United Kingdom:</strong> Data is protected under UK GDPR.</p>
-                <p><strong>California:</strong> Rights are provided under CCPA/CPRA.</p>
-                <p><strong>Nigeria:</strong> Data processing complies with NDPR requirements.</p>
-            </section>
-        </div>
+<main>
+  <!-- ===== document hero ===== -->
+  <div class="doc-hero">
+    <span class="ghost" aria-hidden="true">PRIVACY</span>
+    <p class="kicker rv">LEGAL — DOC 02 / CONNECTBOY</p>
+    <h1 class="rv">PRIVACY POLICY</h1>
+    <div class="doc-meta rv">
+      <span>LAST UPDATED: <b>MARCH 16, 2026</b></span>
+      <span>SCOPE: <b>WEBSITE + GAMING SERVICES</b></span>
+      <span>SECTIONS: <b>11</b></span>
     </div>
+  </div>
+  <div class="checkers" style="--cA:var(--gold)" aria-hidden="true"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Connect Boy</h4>
-                    <p>Your ultimate mobile gaming destination</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Connect Boy. All rights reserved.</p>
-            </div>
+  <!-- ===== document body ===== -->
+  <div class="doc-wrap" id="doc">
+    <aside class="rail" aria-label="Table of contents">
+      <p class="rail-title">INDEX</p>
+      <ol class="toc" id="toc">
+        <li><a href="#s1"><span class="n">01</span> Introduction</a></li>
+        <li><a href="#s2"><span class="n">02</span> Information We Collect</a></li>
+        <li><a href="#s3"><span class="n">03</span> AI and Machine Learning Usage</a></li>
+        <li><a href="#s4"><span class="n">04</span> How We Use Your Information</a></li>
+        <li><a href="#s5"><span class="n">05</span> Information Sharing and Disclosure</a></li>
+        <li><a href="#s6"><span class="n">06</span> Your Privacy Rights &amp; Control</a></li>
+        <li><a href="#s7"><span class="n">07</span> International Data Protection</a></li>
+        <li><a href="#s8"><span class="n">08</span> Children's Privacy</a></li>
+        <li><a href="#s9"><span class="n">09</span> Data Security</a></li>
+        <li><a href="#s10"><span class="n">10</span> Contact and Inquiries</a></li>
+        <li><a href="#s11"><span class="n">11</span> Regional Information</a></li>
+      </ol>
+    </aside>
+
+    <article class="doc">
+      <!-- 1 -->
+      <section id="s1" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">01</span><h2>Introduction</h2></div>
+        <p>ConnectBoy ("we," "us," "our," or "Company") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and gaming services (the "Service").</p>
+        <p>We prioritize transparency and user control, ensuring that your gaming experience remains secure. By using our Service, you agree to the collection and use of information in accordance with this policy.</p>
+      </section>
+
+      <!-- 2 -->
+      <section id="s2" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">02</span><h2>Information We Collect</h2></div>
+        <h3><span class="h3n">2.1</span>Information You Provide Directly</h3>
+        <ul class="data-list">
+          <li><span class="dt">Account Registration</span><span class="dd">Username, email address, password, and optional display name</span></li>
+          <li><span class="dt">Referral Program</span><span class="dd">Referral codes and points earned through our player recruitment system</span></li>
+          <li><span class="dt">Payment Metadata</span><span class="dd">Transaction history, wallet balances, and reference tokens (actual payment processing is handled by secure third-party providers)</span></li>
+          <li><span class="dt">Communication</span><span class="dd">User-to-user invites, support tickets, and system notifications</span></li>
+        </ul>
+        <h3><span class="h3n">2.2</span>Information Collected Automatically</h3>
+        <ul class="data-list">
+          <li><span class="dt">Device Tokens &amp; Identifiers</span><span class="dd">Push notification tokens (FCM) and platform type (iOS/Android/Web)</span></li>
+          <li><span class="dt">Gameplay Dynamics</span><span class="dd">High scores, achievements, and game session data</span></li>
+          <li><span class="dt">Access Logs</span><span class="dd">IP address, browser type, and approximate location for regional compliance</span></li>
+          <li><span class="dt">Social Logins</span><span class="dd">Provider keys from third-party services like Google and Apple (if used for authentication)</span></li>
+        </ul>
+      </section>
+
+      <!-- 3 -->
+      <section id="s3" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">03</span><h2>AI and Machine Learning Usage</h2></div>
+        <p>To provide a better gaming experience, we may use Artificial Intelligence (AI) and Machine Learning (ML) technologies for:</p>
+        <ul class="data-list">
+          <li><span class="dt">Fair Play &amp; Anti-Cheat</span><span class="dd">Detecting anomalous gameplay patterns to prevent unfair advantages</span></li>
+          <li><span class="dt">In-Game Matchmaking</span><span class="dd">Optimizing player matching based on skill level and latency</span></li>
+          <li><span class="dt">Content Optimization</span><span class="dd">Improving game balance and suggested features based on player trends</span></li>
+        </ul>
+        <p style="margin-top:18px">We do not use AI for significant automated decision-making without appropriate oversight.</p>
+      </section>
+
+      <!-- 4 -->
+      <section id="s4" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">04</span><h2>How We Use Your Information</h2></div>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul class="data-list">
+          <li><span class="dt">Account Management</span><span class="dd">Maintaining your profile, wallet, and referral track record</span></li>
+          <li><span class="dt">Service Continuity</span><span class="dd">Managing real-time game sessions and synchronization</span></li>
+          <li><span class="dt">Security</span><span class="dd">Preventing fraud, unauthorized account access, and malicious behavior</span></li>
+          <li><span class="dt">Engagement</span><span class="dd">Sending push notifications for game invites and account updates</span></li>
+          <li><span class="dt">Compliance</span><span class="dd">Meeting regulatory requirements and responding to legal requests</span></li>
+        </ul>
+      </section>
+
+      <!-- 5 -->
+      <section id="s5" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">05</span><h2>Information Sharing and Disclosure</h2></div>
+        <p class="pull">We do not sell your personal data.</p>
+        <p>Sharing only occurs in limited circumstances:</p>
+        <ul class="data-list">
+          <li><span class="dt">Third-Party Providers</span><span class="dd">Cloud hosting, push notification services, and payment gateways</span></li>
+          <li><span class="dt">Public Profiles</span><span class="dd">Usernames and rankings visible on global leaderboards</span></li>
+          <li><span class="dt">Legal Necessity</span><span class="dd">When required to comply with law or protect our rights and safety</span></li>
+          <li><span class="dt">Corporate Transactions</span><span class="dd">During mergers, acquisitions, or asset transfers</span></li>
+        </ul>
+      </section>
+
+      <!-- 6 -->
+      <section id="s6" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">06</span><h2>Your Privacy Rights &amp; Control</h2></div>
+        <p>We provide tools to manage your personal information:</p>
+        <ul class="data-list">
+          <li><span class="dt">Account Update</span><span class="dd">Change your username and profile details directly via settings</span></li>
+          <li><span class="dt">Account Deletion</span><span class="dd">Request the permanent removal of your account and all associated data</span></li>
+          <li><span class="dt">Data Access</span><span class="dd">Request a summary of the data we hold regarding your account</span></li>
+          <li><span class="dt">Revocation</span><span class="dd">Withdraw consent for non-essential data processing at any time</span></li>
+        </ul>
+        <p style="margin-top:18px">To exercise these rights, please contact our Privacy Team at <a href="mailto:connectboygames@gmail.com" style="color:var(--gold)">connectboygames@gmail.com</a>.</p>
+      </section>
+
+      <!-- 7 -->
+      <section id="s7" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">07</span><h2>International Data Protection</h2></div>
+        <p>We operate globally and may transfer data to jurisdictions with different protection laws. We implement standard safeguards to ensure your data remains protected regardless of its processing location.</p>
+      </section>
+
+      <!-- 8 -->
+      <section id="s8" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">08</span><h2>Children's Privacy</h2></div>
+        <p>Connect Boy does not knowingly collect data from children under 13. If we become aware of such data, we will take immediate steps to delete it. We recommend parental supervision for users under 18.</p>
+      </section>
+
+      <!-- 9 -->
+      <section id="s9" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">09</span><h2>Data Security</h2></div>
+        <p>We implement robust technical and organizational measures to protect your data, including password hashing (BCrypt), secure token-based authentication, and encryption during transit.</p>
+      </section>
+
+      <!-- 10 -->
+      <section id="s10" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">10</span><h2>Contact and Inquiries</h2></div>
+        <div class="dpo-card">
+          <p class="dpo-title">CONNECT BOY DATA PROTECTION OFFICE</p>
+          <div class="dpo-row"><span class="cl">EMAIL</span><a class="cv" href="mailto:connectboygames@gmail.com">connectboygames@gmail.com</a></div>
+          <div class="dpo-row"><span class="cl">ADDRESS</span><span class="cv">Garki, Abuja, Nigeria</span></div>
+          <div class="dpo-row"><span class="cl">PHONE</span><a class="cv" href="tel:+2349067515176">+2349067515176</a></div>
+          <p class="dpo-note">We aim to respond to all inquiries within 30 days.</p>
         </div>
-    </footer>
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+      </section>
 
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+      <!-- 11 -->
+      <section id="s11" data-toc class="rv regional">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">11</span><h2>Regional Information</h2></div>
+        <ul class="data-list">
+          <li><span class="dt">United Kingdom</span><span class="dd">Data is protected under UK GDPR.</span></li>
+          <li><span class="dt">California</span><span class="dd">Rights are provided under CCPA/CPRA.</span></li>
+          <li><span class="dt">Nigeria</span><span class="dd">Data processing complies with NDPR requirements.</span></li>
+        </ul>
+      </section>
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
+      <div class="doc-end">
+        <span class="mono-tag">END OF DOCUMENT — PRIVACY POLICY / CONNECTBOY</span>
+        <a class="top-link" href="#nav">BACK TO TOP
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-logo" aria-hidden="true"><img src="logo.png" alt="ConnectBoy"></div>
+  <div class="foot-row">
+    <span>© 2026 CONNECT BOY. ALL RIGHTS RESERVED.</span>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="index.html">HOME</a>
+      <a href="index.html#features">FEATURES</a>
+      <a href="index.html#contact">CONTACT</a>
+      <a href="terms.html">TERMS OF SERVICE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
+    </nav>
+    <div class="foot-social">
+      <a href="#">FACEBOOK</a>
+      <a href="#">TWITTER</a>
+      <a href="#">INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="checkers foot-check" aria-hidden="true"></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s){ return document.querySelector(s); };
+  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  /* nav scroll state */
+  var nav = $("#nav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 24); }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  /* mobile menu */
+  var burger = $("#burger"), menu = $("#menu");
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    document.body.classList.toggle("no-scroll", open);
+    burger.classList.toggle("x", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  burger.addEventListener("click", function(){ setMenu(!menu.classList.contains("open")); });
+  $$("#menu a").forEach(function(a){ a.addEventListener("click", function(){ setMenu(false); }); });
+
+  /* scroll reveal */
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.08});
+    $$(".rv").forEach(function(el){ io.observe(el); });
+  } else {
+    $$(".rv").forEach(function(el){ el.classList.add("in"); });
+  }
+
+  /* TOC scroll-spy */
+  var links = $$("#toc a");
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+  function setActive(id){
+    links.forEach(function(a){ a.classList.remove("active"); a.removeAttribute("aria-current"); });
+    if(map[id]){ map[id].classList.add("active"); map[id].setAttribute("aria-current","true"); }
+  }
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ setActive(e.target.id); } });
+    }, {rootMargin:"-30% 0px -60% 0px"});
+    $$(".doc section[data-toc]").forEach(function(s){ spy.observe(s); });
+  }
+  setActive("s1");
+})();
+</script>
 </body>
-
 </html>

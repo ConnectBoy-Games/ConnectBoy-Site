@@ -1,185 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Connect Boy</title>
-    <link rel="stylesheet" href="style-v2.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service - Connect Boy</title>
+<meta name="description" content="ConnectBoy Terms of Service — the rules governing your use of our website and multiplayer gaming services.">
+<link rel="icon" href="logo.png" type="image/png" sizes="32x32">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/anton@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/600.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/archivo@latest/800.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/400.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/500.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/ibm-plex-mono@latest/600.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --ink:#0B0C0F; --ink2:#0E1016; --paper:#F3EFE4; --dim:rgba(243,239,228,.62);
+  --line:rgba(243,239,228,.16);
+  --gold:#DC2626; --gold-deep:#991B1B;
+  --disp:'Anton',Impact,sans-serif; --body:'Archivo',Helvetica,sans-serif; --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:16px;line-height:1.65;overflow-x:hidden}
+body.no-scroll{overflow:hidden}
+a{color:inherit}
+::selection{background:var(--gold);color:#151208}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#151208;padding:10px 18px;z-index:200;font-family:var(--mono)}
+.skip:focus{left:12px;top:12px}
+
+.noise{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.055;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E")}
+.checkers{--cA:var(--paper);--cB:transparent;--cs:12px;height:var(--cs);
+ background:conic-gradient(var(--cA) 0 25%,var(--cB) 0 50%);background-size:calc(var(--cs)*2) calc(var(--cs)*2)}
+
+.kicker{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:12px}
+.kicker::before{content:"";width:36px;height:2px;background:currentColor;flex:none}
+
+/* ---------- nav ---------- */
+#nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(20px,4vw,48px);transition:background .3s,border-color .3s;border-bottom:1px solid transparent;background:rgba(11,12,15,.94)}
+#nav.scrolled{border-bottom-color:var(--line)}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-img{height:56px;width:auto;display:block;margin:-6px 0}
+.nav-links{display:flex;gap:26px}
+.nav-links a{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.16em;text-decoration:none;color:var(--dim);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a[aria-current="page"]{color:var(--gold)}
+.burger{display:none;background:none;border:0;width:40px;height:34px;cursor:pointer;position:relative;z-index:70}
+.burger span{position:absolute;left:7px;right:7px;height:2px;background:var(--paper);transition:transform .3s,top .3s}
+.burger span:nth-child(1){top:12px}.burger span:nth-child(2){top:20px}
+.burger.x span:nth-child(1){top:16px;transform:rotate(45deg)}
+.burger.x span:nth-child(2){top:16px;transform:rotate(-45deg)}
+#menu{position:fixed;inset:0;z-index:50;background:var(--ink);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:100px clamp(24px,8vw,80px) 50px;gap:6px;opacity:0;pointer-events:none;transition:opacity .35s}
+#menu.open{opacity:1;pointer-events:auto}
+#menu a.mlink{font-family:var(--disp);font-size:clamp(2.2rem,8vw,3.6rem);text-transform:uppercase;text-decoration:none;line-height:1.16;color:var(--paper)}
+#menu a.mlink:hover{color:var(--gold)}
+#menu .menu-foot{margin-top:auto;display:flex;gap:22px;flex-wrap:wrap}
+#menu .menu-foot a{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--dim);text-decoration:none}
+
+/* ---------- doc hero ---------- */
+.doc-hero{position:relative;padding:150px clamp(20px,5vw,64px) 46px;overflow:hidden}
+.doc-hero .ghost{position:absolute;top:24px;right:-12px;font-family:var(--disp);font-size:clamp(5rem,18vw,15rem);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(243,239,228,.09);text-transform:uppercase;pointer-events:none;user-select:none}
+.doc-hero h1{font-family:var(--disp);font-weight:400;text-transform:uppercase;line-height:.92;font-size:clamp(3rem,9vw,7.5rem);margin-top:22px;max-width:14ch}
+.doc-meta{margin-top:30px;display:flex;gap:34px;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;color:var(--dim)}
+.doc-meta b{color:var(--paper);font-weight:600}
+
+/* ---------- doc layout ---------- */
+.doc-wrap{display:grid;grid-template-columns:280px minmax(0,1fr);gap:clamp(36px,5vw,90px);padding:clamp(40px,6vw,70px) clamp(20px,5vw,64px);max-width:1360px;margin:0 auto;align-items:start}
+.rail{position:sticky;top:110px}
+.rail-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--dim);margin-bottom:16px}
+.toc{list-style:none;display:flex;flex-direction:column}
+.toc a{display:flex;gap:14px;align-items:baseline;padding:9px 10px 9px 0;text-decoration:none;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;color:var(--dim);border-left:2px solid transparent;transition:color .2s,border-color .2s,padding .2s}
+.toc a .n{color:rgba(243,239,228,.35);font-size:11px}
+.toc a:hover{color:var(--paper)}
+.toc a.active{color:var(--gold);border-left-color:var(--gold);padding-left:12px}
+.toc a.active .n{color:var(--gold)}
+
+.doc{max-width:760px}
+.doc section{padding:44px 0 10px;border-top:1px solid var(--line)}
+.doc section:first-child{border-top:0;padding-top:8px}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:20px}
+.sec-num{font-family:var(--disp);font-size:1.7rem;color:transparent;-webkit-text-stroke:1.2px var(--gold);flex:none;line-height:1}
+.doc h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:.02em;line-height:1.1}
+.doc p{color:var(--dim);margin-bottom:16px}
+.doc p strong{color:var(--paper)}
+.doc p:last-child{margin-bottom:0}
+
+/* term / definition rows (wallet section) */
+.data-list{list-style:none;margin:18px 0 6px}
+.data-list li{display:grid;grid-template-columns:210px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line);align-items:baseline}
+.data-list li:last-child{border-bottom:1px solid var(--line)}
+.data-list .dt{font-family:var(--mono);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.data-list .dd{color:var(--dim)}
+
+/* plain agreement lists (sections 3 & 4) */
+.rule-list{list-style:none;margin:18px 0 6px}
+.rule-list li{position:relative;padding:11px 0 11px 30px;color:var(--dim);border-top:1px solid var(--line)}
+.rule-list li:first-child{border-top:0}
+.rule-list li::before{content:"";position:absolute;left:2px;top:18px;width:12px;height:12px;border:1px solid rgba(243,239,228,.3);background:conic-gradient(var(--gold) 0 25%,transparent 0 50%);background-size:6px 6px}
+
+/* legal dept card */
+.dpo-card{position:relative;border:1px solid var(--line);background:var(--ink2);padding:30px 28px;margin:18px 0}
+.dpo-card::before{content:"";position:absolute;top:-7px;left:26px;width:14px;height:14px;background:conic-gradient(var(--gold) 0 25%,var(--ink) 0 50%);background-size:7px 7px;border:1px solid var(--paper)}
+.dpo-title{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.22em;color:var(--dim);margin-bottom:18px}
+.dpo-row{display:grid;grid-template-columns:110px 1fr;gap:14px;padding:11px 0;border-top:1px solid var(--line);align-items:baseline}
+.dpo-row .cl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.dpo-row .cv{font-weight:600}
+.dpo-row a.cv{text-decoration:none;border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+.dpo-row a.cv:hover{color:var(--gold);border-color:var(--gold)}
+
+/* back to top */
+.doc-end{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding:36px 0 8px;border-top:1px solid var(--line);margin-top:30px}
+.doc-end .mono-tag{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--dim)}
+.top-link{display:inline-flex;align-items:center;gap:10px;font-family:var(--disp);font-size:1rem;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--paper);transition:color .2s}
+.top-link:hover{color:var(--gold)}
+.top-link svg{transition:transform .25s}
+.top-link:hover svg{transform:translateY(-3px)}
+
+/* ---------- footer ---------- */
+footer{background:#060708;margin-top:clamp(60px,8vw,100px)}
+.foot-logo{font-family:var(--disp);font-size:clamp(2.6rem,12.5vw,11.5rem);line-height:.9;text-align:center;padding:70px 16px 8px;user-select:none;letter-spacing:.02em}
+.foot-logo img{height:clamp(3rem,12.5vw,11.5rem);width:auto;display:inline-block;filter:drop-shadow(0 0 1px rgba(243,239,228,.22))}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:22px;flex-wrap:wrap;padding:34px clamp(20px,5vw,64px) 44px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim)}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a,.foot-social a{color:var(--dim);text-decoration:none;transition:color .2s}
+.foot-links a:hover,.foot-social a:hover{color:var(--gold)}
+.foot-social{display:flex;gap:22px}
+.foot-check{--cA:var(--gold)}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .nav-links{display:none}
+  .burger{display:block}
+  .doc-wrap{grid-template-columns:1fr}
+  .rail{position:static}
+  .toc{flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:8px;scrollbar-width:thin}
+  .toc a{white-space:nowrap;border-left:0;border:1px solid var(--line);padding:8px 12px}
+  .toc a.active{border-color:var(--gold);padding-left:12px}
+  .rail-title{display:none}
+}
+@media (max-width:640px){
+  .data-list li,.dpo-row{grid-template-columns:1fr;gap:4px}
+  .doc-hero{padding-top:120px}
+  .foot-row{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .js .rv{opacity:1;transform:none}
+}
+@media print{
+  #nav,#menu,.noise,.burger,.doc-end,footer,.checkers,.doc-hero .ghost{display:none !important}
+  body{background:#fff;color:#000}
+  .doc-wrap{display:block;padding:0}
+  .doc p,.data-list .dd,.rule-list li{color:#222}
+  .doc h1,.doc h2,.data-list .dt,.rule-list li{color:#000;-webkit-text-stroke:0}
+  .doc-hero h1{color:#000}
+}
+</style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>ConnectBoy Games</h1>
-            </div>
-            <button class="menu-toggle" id="mobile-menu" aria-label="Open Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="index.html#features">Features</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="terms.html" class="active">Terms</a></li>
-                <li><a href="privacy.html">Privacy</a></li>
-            </ul>
-        </div>
-    </nav>
+<a class="skip" href="#doc">Skip to content</a>
+<div class="noise" aria-hidden="true"></div>
 
-    <!-- Main Content -->
-    <div class="legal-container">
-        <div class="container">
-            <h1>Terms of Service</h1>
-            <p class="last-updated">Last Updated: March 16, 2026</p>
+<header id="nav">
+  <a class="logo" href="index.html" aria-label="ConnectBoy home">
+    <img class="logo-img" src="logo.png" alt="ConnectBoy">
+  </a>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="index.html">HOME</a>
+    <a href="index.html#features">FEATURES</a>
+    <a href="index.html#contact">CONTACT</a>
+    <a href="terms.html" aria-current="page">TERMS</a>
+    <a href="privacy.html">PRIVACY</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+</header>
 
-            <section class="legal-section">
-                <h2>1. Acceptance of Terms</h2>
-                <p>By accessing or using Connect Boy (the "Service"), you agree to be bound by these
-                    Terms of Service and all applicable laws. If you do not agree with any part of these
-                    terms, you must discontinue use of the Service immediately.</p>
-            </section>
+<div id="menu" aria-label="Menu">
+  <a class="mlink" href="index.html">Home</a>
+  <a class="mlink" href="index.html#features">Features</a>
+  <a class="mlink" href="index.html#contact">Contact</a>
+  <a class="mlink" href="terms.html">Terms</a>
+  <a class="mlink" href="privacy.html">Privacy</a>
+  <div class="menu-foot">
+    <a href="mailto:connectboygames@gmail.com">EMAIL US</a>
+    <a href="tel:+2349067515176">+234 906 751 5176</a>
+  </div>
+</div>
 
-            <section class="legal-section">
-                <h2>2. User Eligibility</h2>
-                <p>You must be at least 13 years old to use Connect Boy. Users between the ages of 13 and 18 must have parental
-                    consent. By using the Service, you represent that you meet these requirements.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>3. Account Registration & Security</h2>
-                <p>To access certain features, you must create an account. You agree to:</p>
-                <ul>
-                    <li>Provide accurate and complete registration information</li>
-                    <li>Maintain the security of your account credentials</li>
-                    <li>Be responsible for all activities that occur under your account</li>
-                    <li>Notify us immediately of any unauthorized access</li>
-                </ul>
-                <p>We use industry-standard security measures, including password hashing, to protect your account, but you are responsible for maintaining your own credential confidentiality.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>4. User Conduct</h2>
-                <p>Connect Boy is a multiplayer gaming platform. Users agree to:</p>
-                <ul>
-                    <li>Play fairly and use the games as intended</li>
-                    <li>Not use cheats, hacks, or automated bots to gain an advantage</li>
-                    <li>Maintain a respectful and positive community environment</li>
-                    <li>Not engage in harassment, bullying, or discriminatory behavior</li>
-                    <li>Not attempt to reverse engineer or disrupt the Service infrastructure</li>
-                </ul>
-                <p>Violation of conduct policies may result in account suspension or a permanent ban.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>5. Content and Intellectual Property</h2>
-                <p>All game designs, graphics, code, and brand materials are the exclusive property of Connect Boy. Your use is limited to personal, non-commercial gameplay. You may not reproduce or distribute any part of the Service without explicit permission.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>6. User-Generated Content</h2>
-                <p>By submitting content (e.g., in-game chat or invites), you grant us a license to use and display such content for service functionality. You remain responsible for ensuring your submissions are lawful.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>7. Wallet, Tokens, and Transactions</h2>
-                <p>Connect Boy features an integrated wallet system for managing in-game currency and transactions.</p>
-                <ul>
-                    <li><strong>Wallet Balance:</strong> Represents your current in-game funds for use within the platform.</li>
-                    <li><strong>Transactions:</strong> All deposits, withdrawals, and internal payments are tracked via unique reference tokens.</li>
-                    <li><strong>Refunds:</strong> All digital purchases are non-refundable except where required by law.</li>
-                    <li><strong>Third-Party Processing:</strong> External transactions are handled by secure payment gateways; Connect Boy is not liable for issues arising from third-party processor failures.</li>
-                </ul>
-            </section>
-
-            <section class="legal-section">
-                <h2>8. Account Suspension and Termination</h2>
-                <p>We reserve the right to suspend or terminate accounts for violations of these Terms, including but not limited to cheating, fraud, or harassment. Upon termination, access to wallet balances and in-game progress may be forfeited.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>9. Disclaimers and Limitations of Liability</h2>
-                <p>The Service is provided "as is" and "as available". We do not guarantee uninterrupted availability. To the maximum extent permitted by law, Connect Boy shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>10. Disputes and Governing Law</h2>
-                <p>These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria. Any disputes shall be resolved through binding arbitration in Abuja, Nigeria, unless otherwise required by law.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>11. Changes to Terms</h2>
-                <p>We may modify these Terms at any time. Significant changes will be announced via the Service. Continued use after modifications constitutes acceptance of the new Terms.</p>
-            </section>
-
-            <section class="legal-section">
-                <h2>12. Contact Information</h2>
-                <p>
-                    <strong>Connect Boy Legal Department</strong><br>
-                    Email: connectboygames@gmail.com<br>
-                    Address: Garki, Abuja, Nigeria<br>
-                    Phone: +2349067515176
-                </p>
-            </section>
-        </div>
+<main>
+  <!-- ===== document hero ===== -->
+  <div class="doc-hero">
+    <span class="ghost" aria-hidden="true">TERMS</span>
+    <p class="kicker rv">LEGAL — DOC 01 / CONNECTBOY</p>
+    <h1 class="rv">TERMS OF SERVICE</h1>
+    <div class="doc-meta rv">
+      <span>LAST UPDATED: <b>MARCH 16, 2026</b></span>
+      <span>SCOPE: <b>SERVICE + PLATFORM USE</b></span>
+      <span>SECTIONS: <b>12</b></span>
     </div>
+  </div>
+  <div class="checkers" style="--cA:var(--gold)" aria-hidden="true"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Connect Boy</h4>
-                    <p>Your ultimate mobile gaming destination</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#features">Features</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Follow Us</h4>
-                    <ul>
-                        <li><a href="#">Facebook</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Instagram</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Connect Boy. All rights reserved.</p>
-            </div>
+  <!-- ===== document body ===== -->
+  <div class="doc-wrap" id="doc">
+    <aside class="rail" aria-label="Table of contents">
+      <p class="rail-title">INDEX</p>
+      <ol class="toc" id="toc">
+        <li><a href="#s1"><span class="n">01</span> Acceptance of Terms</a></li>
+        <li><a href="#s2"><span class="n">02</span> User Eligibility</a></li>
+        <li><a href="#s3"><span class="n">03</span> Account Registration &amp; Security</a></li>
+        <li><a href="#s4"><span class="n">04</span> User Conduct</a></li>
+        <li><a href="#s5"><span class="n">05</span> Content and Intellectual Property</a></li>
+        <li><a href="#s6"><span class="n">06</span> User-Generated Content</a></li>
+        <li><a href="#s7"><span class="n">07</span> Wallet, Tokens, and Transactions</a></li>
+        <li><a href="#s8"><span class="n">08</span> Account Suspension and Termination</a></li>
+        <li><a href="#s9"><span class="n">09</span> Disclaimers and Limitations of Liability</a></li>
+        <li><a href="#s10"><span class="n">10</span> Disputes and Governing Law</a></li>
+        <li><a href="#s11"><span class="n">11</span> Changes to Terms</a></li>
+        <li><a href="#s12"><span class="n">12</span> Contact Information</a></li>
+      </ol>
+    </aside>
+
+    <article class="doc">
+      <!-- 1 -->
+      <section id="s1" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">01</span><h2>Acceptance of Terms</h2></div>
+        <p>By accessing or using Connect Boy (the "Service"), you agree to be bound by these Terms of Service and all applicable laws. If you do not agree with any part of these terms, you must discontinue use of the Service immediately.</p>
+      </section>
+
+      <!-- 2 -->
+      <section id="s2" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">02</span><h2>User Eligibility</h2></div>
+        <p>You must be at least 13 years old to use Connect Boy. Users between the ages of 13 and 18 must have parental consent. By using the Service, you represent that you meet these requirements.</p>
+      </section>
+
+      <!-- 3 -->
+      <section id="s3" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">03</span><h2>Account Registration &amp; Security</h2></div>
+        <p>To access certain features, you must create an account. You agree to:</p>
+        <ul class="rule-list">
+          <li>Provide accurate and complete registration information</li>
+          <li>Maintain the security of your account credentials</li>
+          <li>Be responsible for all activities that occur under your account</li>
+          <li>Notify us immediately of any unauthorized access</li>
+        </ul>
+        <p style="margin-top:18px">We use industry-standard security measures, including password hashing, to protect your account, but you are responsible for maintaining your own credential confidentiality.</p>
+      </section>
+
+      <!-- 4 -->
+      <section id="s4" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">04</span><h2>User Conduct</h2></div>
+        <p>Connect Boy is a multiplayer gaming platform. Users agree to:</p>
+        <ul class="rule-list">
+          <li>Play fairly and use the games as intended</li>
+          <li>Not use cheats, hacks, or automated bots to gain an advantage</li>
+          <li>Maintain a respectful and positive community environment</li>
+          <li>Not engage in harassment, bullying, or discriminatory behavior</li>
+          <li>Not attempt to reverse engineer or disrupt the Service infrastructure</li>
+        </ul>
+        <p style="margin-top:18px">Violation of conduct policies may result in account suspension or a permanent ban.</p>
+      </section>
+
+      <!-- 5 -->
+      <section id="s5" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">05</span><h2>Content and Intellectual Property</h2></div>
+        <p>All game designs, graphics, code, and brand materials are the exclusive property of Connect Boy. Your use is limited to personal, non-commercial gameplay. You may not reproduce or distribute any part of the Service without explicit permission.</p>
+      </section>
+
+      <!-- 6 -->
+      <section id="s6" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">06</span><h2>User-Generated Content</h2></div>
+        <p>By submitting content (e.g., in-game chat or invites), you grant us a license to use and display such content for service functionality. You remain responsible for ensuring your submissions are lawful.</p>
+      </section>
+
+      <!-- 7 -->
+      <section id="s7" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">07</span><h2>Wallet, Tokens, and Transactions</h2></div>
+        <p>Connect Boy features an integrated wallet system for managing in-game currency and transactions.</p>
+        <ul class="data-list">
+          <li><span class="dt">Wallet Balance</span><span class="dd">Represents your current in-game funds for use within the platform.</span></li>
+          <li><span class="dt">Transactions</span><span class="dd">All deposits, withdrawals, and internal payments are tracked via unique reference tokens.</span></li>
+          <li><span class="dt">Refunds</span><span class="dd">All digital purchases are non-refundable except where required by law.</span></li>
+          <li><span class="dt">Third-Party Processing</span><span class="dd">External transactions are handled by secure payment gateways; Connect Boy is not liable for issues arising from third-party processor failures.</span></li>
+        </ul>
+      </section>
+
+      <!-- 8 -->
+      <section id="s8" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">08</span><h2>Account Suspension and Termination</h2></div>
+        <p>We reserve the right to suspend or terminate accounts for violations of these Terms, including but not limited to cheating, fraud, or harassment. Upon termination, access to wallet balances and in-game progress may be forfeited.</p>
+      </section>
+
+      <!-- 9 -->
+      <section id="s9" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">09</span><h2>Disclaimers and Limitations of Liability</h2></div>
+        <p>The Service is provided "as is" and "as available". We do not guarantee uninterrupted availability. To the maximum extent permitted by law, Connect Boy shall not be liable for any indirect, incidental, or consequential damages arising from your use of the Service.</p>
+      </section>
+
+      <!-- 10 -->
+      <section id="s10" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">10</span><h2>Disputes and Governing Law</h2></div>
+        <p>These Terms shall be governed by and construed in accordance with the laws of the Federal Republic of Nigeria. Any disputes shall be resolved through binding arbitration in Abuja, Nigeria, unless otherwise required by law.</p>
+      </section>
+
+      <!-- 11 -->
+      <section id="s11" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">11</span><h2>Changes to Terms</h2></div>
+        <p>We may modify these Terms at any time. Significant changes will be announced via the Service. Continued use after modifications constitutes acceptance of the new Terms.</p>
+      </section>
+
+      <!-- 12 -->
+      <section id="s12" data-toc class="rv">
+        <div class="sec-head"><span class="sec-num" aria-hidden="true">12</span><h2>Contact Information</h2></div>
+        <div class="dpo-card">
+          <p class="dpo-title">CONNECT BOY LEGAL DEPARTMENT</p>
+          <div class="dpo-row"><span class="cl">EMAIL</span><a class="cv" href="mailto:connectboygames@gmail.com">connectboygames@gmail.com</a></div>
+          <div class="dpo-row"><span class="cl">ADDRESS</span><span class="cv">Garki, Abuja, Nigeria</span></div>
+          <div class="dpo-row"><span class="cl">PHONE</span><a class="cv" href="tel:+2349067515176">+2349067515176</a></div>
         </div>
-    </footer>
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
+      </section>
 
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+      <div class="doc-end">
+        <span class="mono-tag">END OF DOCUMENT — TERMS OF SERVICE / CONNECTBOY</span>
+        <a class="top-link" href="#nav">BACK TO TOP
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.4"/></svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</main>
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-    </script>
+<footer>
+  <div class="foot-logo" aria-hidden="true"><img src="logo.png" alt="ConnectBoy"></div>
+  <div class="foot-row">
+    <span>© 2026 CONNECT BOY. ALL RIGHTS RESERVED.</span>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="index.html">HOME</a>
+      <a href="index.html#features">FEATURES</a>
+      <a href="index.html#contact">CONTACT</a>
+      <a href="terms.html">TERMS OF SERVICE</a>
+      <a href="privacy.html">PRIVACY POLICY</a>
+    </nav>
+    <div class="foot-social">
+      <a href="#">FACEBOOK</a>
+      <a href="#">TWITTER</a>
+      <a href="#">INSTAGRAM</a>
+    </div>
+  </div>
+  <div class="checkers foot-check" aria-hidden="true"></div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(s){ return document.querySelector(s); };
+  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  var nav = $("#nav");
+  function onScroll(){ nav.classList.toggle("scrolled", window.scrollY > 24); }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  var burger = $("#burger"), menu = $("#menu");
+  function setMenu(open){
+    menu.classList.toggle("open", open);
+    document.body.classList.toggle("no-scroll", open);
+    burger.classList.toggle("x", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  }
+  burger.addEventListener("click", function(){ setMenu(!menu.classList.contains("open")); });
+  $$("#menu a").forEach(function(a){ a.addEventListener("click", function(){ setMenu(false); }); });
+
+  if("IntersectionObserver" in window){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.08});
+    $$(".rv").forEach(function(el){ io.observe(el); });
+  } else {
+    $$(".rv").forEach(function(el){ el.classList.add("in"); });
+  }
+
+  var links = $$("#toc a");
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute("href").slice(1)] = a; });
+  function setActive(id){
+    links.forEach(function(a){ a.classList.remove("active"); a.removeAttribute("aria-current"); });
+    if(map[id]){ map[id].classList.add("active"); map[id].setAttribute("aria-current","true"); }
+  }
+  if("IntersectionObserver" in window){
+    var spy = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ setActive(e.target.id); } });
+    }, {rootMargin:"-30% 0px -60% 0px"});
+    $$(".doc section[data-toc]").forEach(function(s){ spy.observe(s); });
+  }
+  setActive("s1");
+})();
+</script>
 </body>
-
 </html>
